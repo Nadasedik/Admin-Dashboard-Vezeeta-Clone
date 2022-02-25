@@ -1,0 +1,14 @@
+<h1 mat-dialog-title class="text-danger text-center">Warning!</h1>
+<div mat-dialog-content>
+  <p>The Department will be deleted permanently</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button
+  color="primary" (click)="Cancel()">
+    Cancel
+  </button>
+  <button mat-raised-button color="primary" cdkFocusInitial
+  class="mx-4" (click)="DeleteDept()" [mat-dialog-close]="data.dpts">
+          Delete
+  </button>
+</div>

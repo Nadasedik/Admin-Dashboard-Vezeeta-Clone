@@ -17,22 +17,39 @@ import { environment } from 'src/environments/environment';
 //firestore
 import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFirestoreModule} from '@angular/fire/compat/firestore';
+import { AddUpdateDepartmentComponent } from './Components/add-update-department/add-update-department.component';
+import { AllDepartmentsComponent } from './Components/all-departments/all-departments.component';
+import { BreadcrumbComponent } from './Components/common/breadcrumb/breadcrumb.component';
+import { DialogComponent } from './Components/common/dialog/dialog.component';
+import { FilterComponent } from './Components/common/filter/filter.component';
+import { DepartmentsComponent } from './Components/departments/departments.component';
+import { TimeStampToDatePipe } from './Pipes/time-stamp-to-date.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
     AddEditDoctorComponent,
     ViewAllDoctorsComponent,
     NavbarCompComponent,
-    SideNavbarCompComponent
+    SideNavbarCompComponent,
+    AddUpdateDepartmentComponent,
+    AllDepartmentsComponent,
+    BreadcrumbComponent,
+    DialogComponent,
+    FilterComponent,
+    DepartmentsComponent,
+    TimeStampToDatePipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialDesignModule,
+    ReactiveFormsModule,
+    FormsModule,
 
     AngularFireModule.initializeApp(environment.firestoreConfig)
-    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
