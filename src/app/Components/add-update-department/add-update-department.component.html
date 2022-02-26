@@ -1,0 +1,72 @@
+<div class="container" id="deptContainer">
+  <app-breadcrumb title="Add Department" subTitle="Departments"></app-breadcrumb>
+  <div class="container-fluid m-3" id="formContainer">
+    <div class="row">
+      <h4 id="formTitle" class="mx-2 my-4"> {{add? 'Add Department' : 'Edit Department'}}</h4>
+    </div>
+    <div class="row mx-3">
+      <form class="d-flex flex-column" [formGroup]="deptForm"
+      (ngSubmit)=" add ? addDept(): updateDept()">
+        <mat-form-field appearance="fill" class="my-2">
+          <mat-label>Department Name</mat-label>
+          <input matInput formControlName="name" name="name"
+          [value]="dpt?.name">
+          <mat-error *ngIf="hasErr('name', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('name', 'minlength')">
+            this field should be 3 characters at least
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="my-2">
+          <mat-label>Department Head</mat-label>
+          <input matInput formControlName="head" [value]="dpt?.head">
+          <span matSuffix>/د</span>
+          <mat-error *ngIf="hasErr('head', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('head', 'minlength')">
+            this field should be 3 characters at least
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="my-2">
+          <mat-label>Department Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date">
+          <!-- [value]="dpt?.date | timeStampToDate"> -->
+          {{dpt?.date | timeStampToDate}}
+          <mat-error *ngIf="hasErr('date', 'required')">
+            this field is required
+          </mat-error>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-label class="fs-5">Department Popularity</mat-label>
+
+        <mat-radio-group class="mx-5 my-2"
+        formControlName="common">
+          <mat-radio-button value="true" class="mx-3"
+          [checked]="dpt?.common">Common Department
+        </mat-radio-button>
+          <mat-radio-button value="false"
+          [checked]="dpt?.common != true">un-common Department</mat-radio-button>
+        </mat-radio-group>
+        <mat-error *ngIf="hasErr('common', 'required')">
+          this field is required
+        </mat-error>
+
+        <div class="btns my-4">
+          <button mat-raised-button color="primary"
+          class="mx-4" type="submit" [disabled]="deptForm.invalid">
+          {{add? "ADD" : 'Update'}}
+        </button>
+
+        <button mat-stroked-button type="reset"
+        color="primary" *ngIf="add">Cancel</button>
+
+        <button mat-stroked-button (click)="cancel()"
+        color="primary" *ngIf="!add">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

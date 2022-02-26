@@ -14,6 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -36,8 +37,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatPaginatorModule,
     MatDialogModule,
     MatToolbarModule,
-    MatSidenavModule
-    
+    MatSidenavModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialDesignModule { }

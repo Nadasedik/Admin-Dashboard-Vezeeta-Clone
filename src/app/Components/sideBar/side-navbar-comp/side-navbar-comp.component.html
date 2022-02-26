@@ -1,11 +1,43 @@
-<mat-sidenav-container >
+<!-- <mat-sidenav-container >
     <mat-sidenav [opened]="opened" mode="push" >
         <div>SideBar</div><!--Mn b3d da nbd2 n7ot kol alli fel sidebar-->
-        <div>Dashboard</div>
-    </mat-sidenav>
+        <div>Dashboard</div> -->
+        <div>
+          <mat-accordion class="acc">
+            <mat-expansion-panel>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel (opened)="department = true"
+                                  (closed)="department = false" hideToggle
+                                  class="bg-secondary">
+              <mat-expansion-panel-header class="header">
+                <mat-panel-title class="text-light">
+                  Departments
+                </mat-panel-title>
+                <mat-panel-description>
+                  <mat-icon *ngIf="!department">+</mat-icon>
+                  <mat-icon *ngIf="department">-</mat-icon>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="d-flex flex-column">
+                <a [routerLink]="['departments']"
+                class="text-decoration-none text-light my-2">
+                  Department List
+                </a>
+                <a [routerLink]="['departments/add']"
+                class="text-decoration-none text-light my-2">Add Department</a>
+
+
+
+
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+    <!-- </mat-sidenav>
     <mat-sidenav-content>
-        
+
         <app-navbar-comp></app-navbar-comp>
         <button  mat-fab color="primary" (click)="opened=!opened">Open<br> SideBar</button>
     </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->

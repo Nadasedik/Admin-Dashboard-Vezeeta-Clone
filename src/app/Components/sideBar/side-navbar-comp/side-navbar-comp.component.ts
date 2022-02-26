@@ -7,16 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavbarCompComponent implements OnInit {
   opened=false
-  
+  department: boolean = false;
   constructor() {
-    
+
    }
 
   ngOnInit(): void {
   }
 
 
-  
+
 
 
 }
