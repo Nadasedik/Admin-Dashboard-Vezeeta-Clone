@@ -1,4 +1,4 @@
-<div class="row d-flex" id="filterContainer">
+<div class="row d-flex" id="filterContainer" *ngIf="lang=='EN'">
   <h4 class="col-3 py-3 px-4 ">{{title}}</h4>
   <div class="col-7" >
     <div id="filter" class="px-3 my-2">
@@ -7,6 +7,32 @@
       <mat-form-field appearance="legacy">
         <mat-label class="text-secondary">Filter</mat-label>
         <input matInput placeholder="Enter Search key" color="secondary"
+        [(ngModel)]="FilterKey" name="filter" [value]="FilterKey">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="col-2 py-2">
+    <button mat-fab class="m-2 bg-info text-light" (click)="openForm()"
+    aria-label="Example icon button with a delete icon">
+    <i class="fa fa-plus"></i>
+    </button>
+    <button mat-fab class="m-2 bg-info text-light"
+    aria-label="Example icon button with a delete icon">
+    <i class="fa fa-minus"></i>
+    </button>
+  </div>
+</div>
+
+
+<div class="row d-flex ARContainer" id="filterContainer" *ngIf="lang=='AR'">
+  <h4 class="col-3 py-3 px-4 ">{{titleAR}}</h4>
+  <div class="col-7" >
+    <div id="filter" class="px-3 my-2">
+      <i class="fa fa-search text-secondary fa-1x mx-3"
+      aria-hidden="true"> </i>
+      <mat-form-field appearance="legacy">
+        <mat-label class="text-secondary">بحث</mat-label>
+        <input matInput placeholder="ادخل كلمة البحث" color="secondary"
         [(ngModel)]="FilterKey" name="filter" [value]="FilterKey">
       </mat-form-field>
     </div>

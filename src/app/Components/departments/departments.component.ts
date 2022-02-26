@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DepartmentsService } from 'src/app/Services/departments.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogComponent } from './../common/dialog/dialog.component';
+import { LangService } from 'src/app/Services/lang.service';
 
 @Component({
   selector: 'app-departments',
@@ -22,15 +23,19 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   sentDpts: any[] = [];
   //l filter
   FilterKey = '';
+  //l localiation
+  lang = '';
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   pageEvent!: PageEvent;
   constructor(private deptSet: DepartmentsService,
-    private _router: Router, private _dialog: MatDialog) { }
+    private _router: Router, private _dialog: MatDialog,
+    private langService: LangService) {}
 
   ngOnInit(): void {
     this.getAllDepts();
     this.filterData();
+    this.lang = this.langService.LangParam;
   }
   ngAfterViewInit(): void {
     // this.dataSource.paginator = this.paginator;
