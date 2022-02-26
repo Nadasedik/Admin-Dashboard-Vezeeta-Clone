@@ -8,8 +8,9 @@
 
       <form class="d-flex flex-column" [formGroup]="deptForm"
       (ngSubmit)=" add ? addDept(): updateDept()">
-        <mat-form-field appearance="fill" class="my-2">
-          <mat-label>Department Name</mat-label>
+      <div class="row">
+        <mat-form-field appearance="fill" class="my-2 col-6">
+          <mat-label>Department Name In English</mat-label>
           <input matInput formControlName="name" name="name"
           [value]="dpt?.name">
           <mat-error *ngIf="hasErr('name', 'required')">
@@ -18,22 +19,59 @@
           <mat-error *ngIf="hasErr('name', 'minlength')">
             this field should be 3 characters at least
           </mat-error>
+          <mat-error *ngIf="hasErr('name', 'pattern')">
+            this field must be in English Only
+          </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill" class="my-2">
-          <mat-label>Department Head</mat-label>
+        <mat-form-field appearance="fill" class="my-2 col-6">
+          <mat-label>Department Name In Arabic</mat-label>
+          <input matInput formControlName="nameAR" name="nameAR"
+          [value]="dpt?.nameAR">
+          <mat-error *ngIf="hasErr('nameAR', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('nameAR', 'minlength')">
+            this field should be 3 characters at least
+          </mat-error>
+          <mat-error *ngIf="hasErr('nameAR', 'pattern')">
+            this field must be in Arabic Only
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="fill" class="my-2 col-6">
+          <mat-label>Department Head In English </mat-label>
           <input matInput formControlName="head" [value]="dpt?.head">
-          <span matSuffix>/د</span>
+          <span matPrefix>Dr/</span>
           <mat-error *ngIf="hasErr('head', 'required')">
             this field is required
           </mat-error>
           <mat-error *ngIf="hasErr('head', 'minlength')">
             this field should be 3 characters at least
           </mat-error>
+          <mat-error *ngIf="hasErr('head', 'pattern')">
+            this field must be in English Only
+          </mat-error>
         </mat-form-field>
+        <mat-form-field appearance="fill" class="my-2 col-6">
+          <mat-label>Department Head In Arabic </mat-label>
+          <input matInput formControlName="headAR" [value]="dpt?.headAR">
+          <span matSuffix>/د</span>
+          <mat-error *ngIf="hasErr('headAR', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('headAR', 'minlength')">
+            this field should be 3 characters at least
+          </mat-error>
+          <mat-error *ngIf="hasErr('headAR', 'pattern')">
+            this field must be in Arabic Only
+          </mat-error>
+        </mat-form-field>
+      </div>
         <mat-form-field appearance="fill" class="my-2">
           <mat-label>Department Date</mat-label>
           <input matInput [matDatepicker]="picker" formControlName="date"
-          [valueAsDate]="dpt?.date | timeStampToDate" [value]="dpt?.date">
+          [value]="dpt?.date">
           <!-- {{dpt?.date | timeStampToDate}} -->
           <mat-error *ngIf="hasErr('date', 'required')">
             this field is required

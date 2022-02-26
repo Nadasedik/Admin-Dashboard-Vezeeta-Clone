@@ -25,8 +25,14 @@ export class AddUpdateDepartmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.deptForm = this._builder.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      head: ['', [Validators.required, Validators.minLength(3)]],
+      name: ['', [Validators.required, Validators.minLength(3),
+        Validators.pattern('^[a-zA-Z ]+$')]],
+      nameAR: ['', [Validators.required, Validators.minLength(3),
+        Validators.pattern('^[\u0621-\u064A\u0660-\u0669 ]+$')]],
+      head: ['', [Validators.required, Validators.minLength(3),
+        Validators.pattern('^[a-zA-Z ]+$')]],
+      headAR: ['', [Validators.required, Validators.minLength(3),
+        Validators.pattern('^[\u0621-\u064A\u0660-\u0669 ]+$')]],
       date: ['', Validators.required],
       common: [false, Validators.required],
       //dynamic validation
@@ -48,9 +54,11 @@ export class AddUpdateDepartmentComponent implements OnInit {
           this.dpt = data;
           //set values to input
           this.deptForm.controls['name'].setValue(this.dpt.name);
+          this.deptForm.controls['nameAR'].setValue(this.dpt.nameAR);
           this.deptForm.controls['head'].setValue(this.dpt.head);
+          this.deptForm.controls['headAR'].setValue(this.dpt.headAR);
           this.deptForm.controls['date'].setValue(this.dpt.date);
-          this.deptForm.controls['common'].setValue(this.dpt.common);
+          // this.deptForm.controls['common'].setValue(this.dpt.common);
           this.deptForm.controls['viewInSlider'].setValue(this.dpt.viewInSlider);
           this.deptForm.controls['sliderPic'].setValue(this.dpt.sliderPic);
           this.deptForm.controls['viewInModal'].setValue(this.dpt.viewInModal);
