@@ -4,5 +4,9 @@ export interface IDepartment {
   head: String,
   numOfDocs: number,
   date: Date,
-  common: boolean
+  common: boolean,
+  viewInSlider: boolean,
+  sliderPic: String,
+  viewInModal: boolean,
+  modalIcon: String,
 }

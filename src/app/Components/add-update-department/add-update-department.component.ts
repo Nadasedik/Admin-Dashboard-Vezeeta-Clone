@@ -28,7 +28,12 @@ export class AddUpdateDepartmentComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3)]],
       head: ['', [Validators.required, Validators.minLength(3)]],
       date: ['', Validators.required],
-      common: [false, Validators.required]
+      common: [false, Validators.required],
+      //dynamic validation
+      viewInSlider: [false],
+      sliderPic: [''],
+      viewInModal: [false],
+      modalIcon: [''],
     });
 
     //l routes
@@ -41,6 +46,15 @@ export class AddUpdateDepartmentComponent implements OnInit {
         this.add = false;
         this.dptSer.getDocByID(id).then(data => {
           this.dpt = data;
+          //set values to input
+          this.deptForm.controls['name'].setValue(this.dpt.name);
+          this.deptForm.controls['head'].setValue(this.dpt.head);
+          this.deptForm.controls['date'].setValue(this.dpt.date);
+          this.deptForm.controls['common'].setValue(this.dpt.common);
+          this.deptForm.controls['viewInSlider'].setValue(this.dpt.viewInSlider);
+          this.deptForm.controls['sliderPic'].setValue(this.dpt.sliderPic);
+          this.deptForm.controls['viewInModal'].setValue(this.dpt.viewInModal);
+          this.deptForm.controls['modalIcon'].setValue(this.dpt.modalIcon);
             console.log('from ts', data);
         })
         .catch(err => {
@@ -51,6 +65,15 @@ export class AddUpdateDepartmentComponent implements OnInit {
 
     //update
     // console.log('from ts', this.deptSet.updateDept('KSf2lO5njfjTTJEsHIlw'));
+  }
+
+  //props
+  //view info
+  get ViewInSlider(): Boolean {
+    return this.deptForm.controls['viewInSlider'].value
+  }
+  get ViewInModal(): Boolean {
+    return this.deptForm.controls['viewInModal'].value
   }
 
   addDept(): void {
@@ -85,4 +108,21 @@ export class AddUpdateDepartmentComponent implements OnInit {
     }
   }
 
+
+  updateSliderValidator() {
+    if(this.ViewInSlider) {
+      this.deptForm.get('sliderPic')?.addValidators([Validators.required]);
+    } else {
+      this.deptForm.get('sliderPic')?.clearValidators();
+    }
+    this.deptForm.get('sliderPic')?.updateValueAndValidity();
+  }
+  updateModalValidator() {
+    if(this.ViewInModal) {
+      this.deptForm.get('modalIcon')?.addValidators([Validators.required]);
+    } else {
+      this.deptForm.get('modalIcon')?.clearValidators();
+    }
+    this.deptForm.get('modalIcon')?.updateValueAndValidity();
+  }
 }

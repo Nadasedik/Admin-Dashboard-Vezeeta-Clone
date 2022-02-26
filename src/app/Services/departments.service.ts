@@ -18,7 +18,11 @@ export class DepartmentsService {
       "head": ("د/ " +dept.head ),
       "date": dept.date,
       "common": dept.common,
-      "numOfDocs": 0
+      "numOfDocs": 0,
+      "viewInSlider": dept.viewInSlider ? dept.viewInSlider : false,
+      "sliderPic": dept.sliderPic ? dept.sliderPic : "",
+      "viewInModal": dept.viewInModal ? dept.viewInModal : false,
+      "modalIcon": dept.modalIcon ? dept.modalIcon : ""
     })
     .then(res => {
       console.log(res);
@@ -39,7 +43,9 @@ export class DepartmentsService {
         let singleDoc:IDepartment = {
           id: document.id,
           name: doc.name, head: doc.head, date: doc.date,
-          numOfDocs: doc.numOfDocs, common: doc.common
+          numOfDocs: doc.numOfDocs, common: doc.common,
+          viewInSlider: doc.viewInSlider, sliderPic: doc.sliderPic,
+          viewInModal: doc.viewInModal, modalIcon:doc.modalIcon
         }
         allData.push(singleDoc);
       })
@@ -85,8 +91,6 @@ export class DepartmentsService {
   }
 
   filterByDept(dpt: String):Observable<any> {
-    // let allData: any[] = [];
-    //.where('name', "in" , dpt.split('')))
     console.log('from service', dpt.split(''));
 
     const allDpts = this._firestore.collection('Departments2',

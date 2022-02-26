@@ -5,6 +5,7 @@
       <h4 id="formTitle" class="mx-2 my-4"> {{add? 'Add Department' : 'Edit Department'}}</h4>
     </div>
     <div class="row mx-3">
+
       <form class="d-flex flex-column" [formGroup]="deptForm"
       (ngSubmit)=" add ? addDept(): updateDept()">
         <mat-form-field appearance="fill" class="my-2">
@@ -31,13 +32,13 @@
         </mat-form-field>
         <mat-form-field appearance="fill" class="my-2">
           <mat-label>Department Date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="date">
-          <!-- [value]="dpt?.date | timeStampToDate"> -->
-          {{dpt?.date | timeStampToDate}}
+          <input matInput [matDatepicker]="picker" formControlName="date"
+          [valueAsDate]="dpt?.date | timeStampToDate" [value]="dpt?.date">
+          <!-- {{dpt?.date | timeStampToDate}} -->
           <mat-error *ngIf="hasErr('date', 'required')">
             this field is required
           </mat-error>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-label class="fs-5">Department Popularity</mat-label>
@@ -53,6 +54,43 @@
         <mat-error *ngIf="hasErr('common', 'required')">
           this field is required
         </mat-error>
+
+        <div>
+          <mat-divider class="my-2"></mat-divider>
+          <div>
+            <h2>View way info: </h2>
+            <div>
+              <mat-slide-toggle formControlName="viewInSlider"
+              (change)="updateSliderValidator()" [checked]="dpt?.viewInSlider">
+                View in slider!
+              </mat-slide-toggle>
+              <mat-form-field appearance="fill" class="my-2 mx-5"
+              *ngIf="ViewInSlider">
+                <mat-label>Slider Image</mat-label>
+                <input matInput formControlName="sliderPic" name="sliderPic"
+                [value]="dpt?.sliderPic">
+                <mat-error *ngIf="hasErr('sliderPic', 'required')">
+                  this field is required now
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-slide-toggle formControlName="viewInModal"
+              (change)="updateModalValidator()" [checked]="dpt?.viewInModal">
+                View in Modal!
+              </mat-slide-toggle>
+              <mat-form-field appearance="fill" class="my-2 mx-5"
+              *ngIf="ViewInModal">
+                <mat-label>Modal Icon</mat-label>
+                <input matInput formControlName="modalIcon" name="modalIcon"
+                [value]="dpt?.modalIcon">
+                <mat-error *ngIf="hasErr('modalIcon', 'required')">
+                  this field is required now
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
 
         <div class="btns my-4">
           <button mat-raised-button color="primary"
@@ -70,3 +108,4 @@
     </div>
   </div>
 </div>
+
