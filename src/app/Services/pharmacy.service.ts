@@ -20,7 +20,7 @@ export class PharmacyService {
     this.pharmacysRef.doc().set({
       "id": med.id,
       "name": med.name,
-      "categoryID": med.categoryID,
+      "category": med.category,
       "price": med.price,
       "molarity": med.molarity,
       "size": med.size,

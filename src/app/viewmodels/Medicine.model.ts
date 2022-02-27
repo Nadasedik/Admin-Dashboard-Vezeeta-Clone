@@ -1,7 +1,7 @@
 export interface Medicine {
   id: string;
   name: string;
-  categoryID: string;
+  category: string;
   price: string;
   molarity: string;
   size: string;
