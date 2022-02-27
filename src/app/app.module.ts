@@ -33,8 +33,9 @@ import { HomeComponent } from './Components/home/home.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { MedicineViewComponent } from './Components/medicine-view/medicine-view.component';
 import { MedicineAddComponent } from './Components/medicine-add/medicine-add.component';
-import { MedicineComponent } from './Components/medicine/medicine.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,6 @@ import { MatSelectModule } from '@angular/material/select';
     DashboardComponent,
     MedicineViewComponent,
     MedicineAddComponent,
-    MedicineComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +69,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSidenavModule,
     MatListModule,
     MatSelectModule,
+    MatCardModule,
     AngularFireModule.initializeApp(environment.firestoreConfig),
   ],
   providers: [],

@@ -4,14 +4,12 @@ import { DepartmentsComponent } from './Components/departments/departments.compo
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddUpdateDepartmentComponent } from './Components/add-update-department/add-update-department.component';
-import { MedicineComponent } from './Components/medicine/medicine.component';
 import { MedicineAddComponent } from './Components/medicine-add/medicine-add.component';
 import { MedicineViewComponent } from './Components/medicine-view/medicine-view.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: "home", component: HomeComponent },
-  { path: "medicine", component: MedicineComponent },
   { path: "medicine/add", component: MedicineAddComponent },
   { path: "medicine/view", component: MedicineViewComponent },
   { path: "departments", component: DepartmentsComponent },
