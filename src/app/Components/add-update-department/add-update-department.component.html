@@ -71,7 +71,7 @@
         <mat-form-field appearance="fill" class="my-2">
           <mat-label>Department Date</mat-label>
           <input matInput [matDatepicker]="picker" formControlName="date"
-          [value]="dpt?.date">
+          [value]="2/1/1900|date">
           <!-- {{dpt?.date | timeStampToDate}} -->
           <mat-error *ngIf="hasErr('date', 'required')">
             this field is required

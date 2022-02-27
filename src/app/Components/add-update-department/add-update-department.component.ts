@@ -33,7 +33,7 @@ export class AddUpdateDepartmentComponent implements OnInit {
         Validators.pattern('^[a-zA-Z ]+$')]],
       headAR: ['', [Validators.required, Validators.minLength(3),
         Validators.pattern('^[\u0621-\u064A\u0660-\u0669 ]+$')]],
-      date: ['', Validators.required],
+      date: [new Date(), Validators.required],
       common: [false, Validators.required],
       //dynamic validation
       viewInSlider: [false],
@@ -57,7 +57,7 @@ export class AddUpdateDepartmentComponent implements OnInit {
           this.deptForm.controls['nameAR'].setValue(this.dpt.nameAR);
           this.deptForm.controls['head'].setValue(this.dpt.head);
           this.deptForm.controls['headAR'].setValue(this.dpt.headAR);
-          this.deptForm.controls['date'].setValue(this.dpt.date);
+          // this.deptForm.controls['date'].setValue(this.dpt.date);
           // this.deptForm.controls['common'].setValue(this.dpt.common);
           this.deptForm.controls['viewInSlider'].setValue(this.dpt.viewInSlider);
           this.deptForm.controls['sliderPic'].setValue(this.dpt.sliderPic);

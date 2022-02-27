@@ -16,7 +16,7 @@ export class LangService {
         console.log('entered');
         this.lang = 'EN'; //as default lw l param not exist
       } else {
-        this.lang = data!; //not null
+        this.lang = data! ; //not null
       }
     })
     return this.lang;
