@@ -1,0 +1,68 @@
+.logo {
+  -webkit-text-emphasis: center;
+          text-emphasis: center;
+  padding: 2.6rem 1rem;
+}
+
+.logo img {
+  width: 200px;
+}
+
+.mat-icon {
+  vertical-align: center;
+  margin-right: 1rem;
+}
+
+.mat-divider {
+  border-top: 2px solid white;
+}
+
+.mat-list-item,
+.accordion-item {
+  color: white !important;
+  font-size: 0.8rem;
+  height: 45px !important;
+  margin-bottom: 5px;
+}
+
+.mat-list-item ::ng-deep .mat-list-item-content,
+.mat-list-item ::ng-deep mat-expansion-panel-header,
+.accordion-item ::ng-deep .mat-list-item-content,
+.accordion-item ::ng-deep mat-expansion-panel-header {
+  margin: 0 8px;
+  border-radius: 5px;
+}
+
+.mat-list-item ::ng-deep .mat-list-item-content:hover,
+.mat-list-item ::ng-deep mat-expansion-panel-header:hover,
+.accordion-item ::ng-deep .mat-list-item-content:hover,
+.accordion-item ::ng-deep mat-expansion-panel-header:hover {
+  background-color: #e8f4f679 !important;
+}
+
+.list-item-active {
+  color: #f2f5f7 !important;
+}
+
+.list-item-active ::ng-deep .mat-list-item-content {
+  background-color: #e8f4f679 !important;
+}
+
+.list-item-active ::ng-deep .mat-list-item-content:hover {
+  background-color: #e8f4f679 !important;
+}
+
+.mat-subheader {
+  color: #f2f5f7;
+  font-size: 1rem;
+  font-weight: 100;
+  letter-spacing: -1px;
+}
+
+::ng-deep .mat-expansion-panel {
+  background: transparent !important;
+  border: 0 !important;
+  outline: 0 !important;
+  margin: 0 !important;
+}
+/*# sourceMappingURL=side-nav.component.css.map */

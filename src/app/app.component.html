@@ -1,8 +1,9 @@
-
-  <app-side-navbar-comp></app-side-navbar-comp>
-  <router-outlet></router-outlet>
-  
-
-  
-
-
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sidebarOpen">
+    <app-side-nav></app-side-nav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-header (toggleThisSidebar)="toggleSidebar()"></app-header>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
