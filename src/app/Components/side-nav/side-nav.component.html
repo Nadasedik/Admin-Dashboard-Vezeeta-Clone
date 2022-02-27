@@ -11,14 +11,6 @@
           <a mat-list-item routerLink="/medicine" routerLinkActive="list-item-active">
             <mat-icon>pharmacy</mat-icon>Pharmacy
           </a>
-          <mat-panel-description>
-            <mat-icon *ngIf="!pharmacy">
-              keyboard_arrow_down
-            </mat-icon>
-            <mat-icon *ngIf="pharmacy">
-              keyboard_arrow_up
-            </mat-icon>
-          </mat-panel-description>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="d-flex flex-column">
@@ -27,32 +19,6 @@
         </a>
         <a mat-list-item routerLink="/medicine/view" routerLinkActive="list-item-active">
           <mat-icon>department</mat-icon>View Medicines
-        </a>
-      </div>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel (opened)="pharmacy" (closed)="!pharmacy" hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <a mat-list-item routerLink="/pharmacy" routerLinkActive="list-item-active">
-            <mat-icon>pharmacy</mat-icon>Pharmacy
-          </a>
-          <mat-panel-description>
-            <mat-icon *ngIf="!pharmacy">
-              keyboard_arrow_down
-            </mat-icon>
-            <mat-icon *ngIf="pharmacy">
-              keyboard_arrow_up
-            </mat-icon>
-          </mat-panel-description>
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <div class="d-flex flex-column">
-        <a mat-list-item routerLink="/departments" routerLinkActive="list-item-active">
-          <mat-icon>department</mat-icon>Department
-        </a>
-        <a mat-list-item routerLink="/departments" routerLinkActive="list-item-active">
-          <mat-icon>department</mat-icon>Department
         </a>
       </div>
     </mat-expansion-panel>
