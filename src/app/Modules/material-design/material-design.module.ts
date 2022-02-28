@@ -15,9 +15,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-
 
 @NgModule({
   declarations: [],
@@ -40,9 +38,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatToolbarModule,
     MatSidenavModule,
     MatSnackBarModule,
-    MatDividerModule,
     MatSlideToggleModule
-
   ]
 })
 export class MaterialDesignModule { }

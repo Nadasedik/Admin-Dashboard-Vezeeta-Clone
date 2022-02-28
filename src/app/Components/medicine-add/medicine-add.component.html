@@ -1,0 +1,129 @@
+<div class="container-fluid page">
+  <div class="page-box p-5">
+    Add Medicine
+  </div>
+  <div class="page-content shadow">
+    <form class="p-5" [formGroup]="medicineForm" (ngSubmit)="(AddMedicine(medicineForm.value))">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Medicine ID</mat-label>
+          <i matSuffix class="fa-solid fa-fingerprint"></i>
+          <input matInput formControlName="id">
+          <mat-error *ngIf="medicineForm.get('id')?.invalid
+              && (medicineForm.get('id')?.dirty
+              || medicineForm.get('id')?.touched)">
+            Please provide an unique id.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Medicine Name</mat-label>
+          <i matSuffix class="fa-solid fa-file-signature"></i>
+          <input matInput formControlName="name">
+          <mat-error *ngIf="medicineForm.get('name')?.invalid
+            && (medicineForm.get('name')?.dirty
+            || medicineForm.get('name')?.touched)">
+            Please provide a name.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Medicine Category</mat-label>
+          <mat-select name="category" (change)="changeCategory($event)" formControlName="category">
+            <mat-option>Select medicine category</mat-option>
+            <mat-option *ngFor="let category of categories" [value]='category.id'>
+              {{category.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="medicineForm.get('category')?.invalid
+            && (medicineForm.get('category')?.dirty
+            || medicineForm.get('category')?.touched)">
+            Please select category name.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Medicine Quantity</mat-label>
+          <i matSuffix class="fa-solid fa-warehouse"></i>
+          <input matInput formControlName="quantity">
+          <mat-error *ngIf="medicineForm.get('quantity')?.invalid
+            && (medicineForm.get('quantity')?.dirty
+            || medicineForm.get('quantity')?.touched)">
+            Please provide the quantity.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Medicine Molarity</mat-label>
+          <i matSuffix class="fa-solid fa-prescription-bottle"></i>
+          <input matInput formControlName="molarity">
+          <mat-error *ngIf="medicineForm.get('molarity')?.invalid
+            && (medicineForm.get('molarity')?.dirty
+            || medicineForm.get('molarity')?.touched)">
+            Please provide the molarity of medicine.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Medicine Size</mat-label>
+          <i matSuffix class="fa-solid fa-syringe"></i>
+          <input matInput formControlName="size">
+          <mat-error *ngIf="medicineForm.get('size')?.invalid
+            && (medicineForm.get('size')?.dirty
+            || medicineForm.get('size')?.touched)">
+            Please provide the size of the medicine.
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Medicine Price</mat-label>
+          <i matSuffix class="fa-solid fa-money-bill"></i>
+          <input matInput formControlName="price">
+          <mat-error *ngIf="medicineForm.get('price')?.invalid
+            && (medicineForm.get('price')?.dirty
+            || medicineForm.get('price')?.touched)">
+            Please provide the price.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Medicine Image</mat-label>
+          <i matSuffix class="fa-solid fa-image"></i>
+          <input matInput formControlName="url">
+          <mat-error *ngIf="medicineForm.get('url')?.invalid
+            && (medicineForm.get('url')?.dirty
+            || medicineForm.get('url')?.touched)">
+            Please provide a valid image URL.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row d-flex justify-content-between">
+        <div class="col-4 d-flex justify-content-center">
+          <button mat-raised-button color="primary" type="submit" (click)="openAddSnackBar()"
+            [disabled]="medicineForm.invalid">
+            Add Medicine
+          </button>
+        </div>
+        <div class="col-4 d-flex justify-content-center">
+          <button mat-raised-button color="accent" type="reset">Reset</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

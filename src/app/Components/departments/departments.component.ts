@@ -6,6 +6,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogComponent } from './../common/dialog/dialog.component';
 import { LangService } from 'src/app/Services/lang.service';
+import { IDepartment } from 'src/app/viewmodels/idepartment';
 
 @Component({
   selector: 'app-departments',
@@ -17,6 +18,7 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   allDept: any[] = [];
   displayedColumns: string[] = ['name', 'head',
   'date', 'numOfDocs', 'popularity', 'btns'];
+
   dataSource: any;
   //da ll paginator
   //da ll delete 3l4an yreload da
@@ -30,7 +32,9 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   pageEvent!: PageEvent;
   constructor(private deptSet: DepartmentsService,
     private _router: Router, private _dialog: MatDialog,
-    private langService: LangService) {}
+    private langService: LangService) {
+      this.dataSource = new MatTableDataSource<IDepartment>(this.allDept)
+    }
 
   ngOnInit(): void {
     this.getAllDepts();
@@ -89,8 +93,4 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
 
     });
   }
-
-
-
-
 }

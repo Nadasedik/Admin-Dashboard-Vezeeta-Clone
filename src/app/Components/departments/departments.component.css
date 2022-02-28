@@ -1,0 +1,23 @@
+#deptContainer {
+  margin: -.5em -1em;
+  width: 79.3em;
+  background-color: rgba(192, 223, 252, 0.233);
+}
+
+#tableContainer {
+  background-color: white;
+  height: 79.5em;
+  margin: 0em -1em;
+  padding-top: 1em;
+}
+
+#tableContainer div:first-child {
+  width: 72em;
+  margin: 0em 2em;
+}
+
+table {
+  width: -webkit-fill-available;
+  margin: 1.2em;
+}
+/*# sourceMappingURL=departments.component.css.map */

@@ -1,0 +1,45 @@
+.mat-toolbar-row {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: justify !important;
+      -ms-flex-pack: justify !important;
+          justify-content: space-between !important;
+}
+
+.mat-toolbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+ul li {
+  list-style: none;
+}
+
+button {
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+
+.user {
+  font-size: 15px;
+}
+
+.user-image {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.user-image-icon {
+  height: 18px;
+  font-size: 15px;
+}
+
+::ng-deep .mat-menu-content {
+  width: 195px;
+}
+/*# sourceMappingURL=header.component.css.map */

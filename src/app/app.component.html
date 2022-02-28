@@ -1,26 +1,23 @@
-<div class="container-fluid mx-0 px-0" *ngIf="lang=='EN'">
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sidebarOpen">
+    <app-side-nav></app-side-nav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-header (toggleThisSidebar)="toggleSidebar()"></app-header>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+<!-- <div class="container-fluid mx-0 px-0">
   <div class="row mx-0 px-0">
     <div class="col-2 mx-0 px-0">
-      <app-side-navbar-comp></app-side-navbar-comp>
+      <app-side-nav></app-side-nav>
     </div>
     <div class="col-10 mx-0 px-0">
       <router-outlet></router-outlet>
     </div>
   </div>
 
-</div>
-
-<div class="container-fluid mx-0 px-0" *ngIf="lang=='AR'">
-  <div class="row mx-0 px-0">
-    <div class="col-10 mx-0 px-0">
-      <router-outlet></router-outlet>
-    </div>
-    <div class="col-2 mx-0 px-0">
-      <app-side-navbar-comp></app-side-navbar-comp>
-    </div>
-  </div>
-
-</div>
+</div> -->
 
 
 

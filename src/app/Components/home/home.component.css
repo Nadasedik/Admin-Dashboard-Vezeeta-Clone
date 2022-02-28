@@ -1,0 +1,29 @@
+.page {
+  color: #032b52;
+  padding: 0 1rem 1rem;
+  background: #e8f4f6;
+}
+
+.page-box {
+  min-height: 100px;
+  background: #032b52;
+  color: #e8f4f6;
+  margin: 0 -1rem;
+  font-size: 35px;
+}
+
+.page-content {
+  border-radius: 10px;
+  margin-top: -1.5rem;
+  padding: 10px;
+  background: #e8f4f6;
+  color: #032b52;
+}
+
+.page-content-data {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+/*# sourceMappingURL=home.component.css.map */

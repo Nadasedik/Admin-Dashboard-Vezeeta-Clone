@@ -1,6 +1,8 @@
-<div class="container" id="deptContainer">
-  <app-breadcrumb title="Add Department" subTitle="Departments"></app-breadcrumb>
-  <div class="container-fluid m-3" id="formContainer">
+<div class="container-fluid page">
+  <div class="page-box p-5">
+    <app-breadcrumb title="Add Department" subTitle="Departments"></app-breadcrumb>
+  </div>
+  <div class="page-content shadow p-3 position-relative">
     <div class="row">
       <h4 id="formTitle" class="mx-2 my-4"> {{add? 'Add Department' : 'Edit Department'}}</h4>
     </div>
@@ -132,18 +134,20 @@
 
         <div class="btns my-4">
           <button mat-raised-button color="primary"
-          class="mx-4" type="submit" [disabled]="deptForm.invalid">
+          class="mx-4" type="submit" [disabled]="deptForm.invalid" id="btnEdit">
           {{add? "ADD" : 'Update'}}
         </button>
 
         <button mat-stroked-button type="reset"
-        color="primary" *ngIf="add">Cancel</button>
+        color="primary" *ngIf="add" id="btn1">Cancel</button>
 
         <button mat-stroked-button (click)="cancel()"
-        color="primary" *ngIf="!add">Cancel</button>
+        color="primary" *ngIf="!add" id="btn2">Cancel</button>
         </div>
       </form>
     </div>
   </div>
-</div>
+  </div>
+
+
 
