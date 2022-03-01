@@ -15,11 +15,11 @@ import { IDepartment } from 'src/app/viewmodels/idepartment';
 })
 export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   panelOpenState: boolean = false;
-  allDept: any[] = [];
+  allDept: IDepartment[] = [];
   displayedColumns: string[] = ['name', 'head',
   'date', 'numOfDocs', 'popularity', 'btns'];
 
-  dataSource: any;
+  // dataSource: any;
   //da ll paginator
   //da ll delete 3l4an yreload da
   sentDpts: any[] = [];
@@ -27,6 +27,10 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   FilterKey = '';
   //l localiation
   lang = '';
+  //for filter
+  dpts!: IDepartment[];
+  dataSource = new MatTableDataSource(this.dpts);
+
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   pageEvent!: PageEvent;
@@ -53,7 +57,7 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
       res?.forEach(singleDoc => {
         this.allDept.push(singleDoc);
       })
-      this.dataSource = this.allDept;
+      this.dataSource = new MatTableDataSource(this.allDept); //7sl edit hena
       this.sentDpts = this.allDept;
     }).catch(err => {
       console.log(err);
@@ -93,4 +97,12 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
 
     });
   }
+
+  //for filter
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
 }

@@ -7,8 +7,12 @@
   <div class="page-content shadow p-3 position-relative">
     <div id="tableContainer" class="mx-3">
       <div class="bg-light">
-        <app-filter title="Department List"
-        route="/departments/add" ></app-filter>
+        <!-- <app-filter title="Department List"
+        route="/departments/add" ></app-filter> -->
+        <mat-form-field appearance="standard">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
 
       </div>
       <div>
@@ -60,6 +64,11 @@
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
         </table>
       </div>
     </div>
@@ -78,8 +87,12 @@
   <div class="page-content shadow p-3 position-relative">
     <div id="tableContainer" class="mx-3">
       <div class="bg-light">
-        <app-filter title="Department List"
-        route="/departments/add" ></app-filter>
+        <!-- <app-filter title="Department List"
+        route="/departments/add" ></app-filter> -->
+        <mat-form-field appearance="standard">
+          <mat-label>بحث</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="ادخل كلمة البحث" #input>
+        </mat-form-field>
 
       </div>
       <div>
@@ -131,6 +144,11 @@
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="text-align: end;" ></tr>
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">لا يوجد بيانات خاصة ب  "{{input.value}}"</td>
+          </tr>
+
         </table>
       </div>
     </div>
