@@ -1,24 +1,23 @@
 .page {
   color: #032b52;
-  padding: 0 1rem;
-  background: #e8f4f6;
+  padding: 0 1rem 1rem;
+  background: whitesmoke;
 }
 
 .page-box {
   min-height: 100px;
-  background: #032b52;
+  background: #0070cd;
   color: #e8f4f6;
   margin: 0 -1rem;
   font-size: 35px;
 }
 
 .page-content {
-  min-height: calc(100vh - 175px);
   border-radius: 10px;
-  margin-top: -2rem;
-  background: #e8f4f6;
+  margin-top: -1.5rem;
+  padding: 10px;
+  background: white;
   color: #032b52;
-  font-size: 2rem;
 }
 
 .page-content-data {
@@ -26,5 +25,14 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+
+i {
+  color: #0070cd;
+  font-size: 1rem;
+}
+
+.mat-form-field {
+  width: 100%;
 }
 /*# sourceMappingURL=medicine-add.component.css.map */

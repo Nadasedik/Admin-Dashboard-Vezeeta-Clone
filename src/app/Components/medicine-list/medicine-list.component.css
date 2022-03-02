@@ -1,0 +1,62 @@
+.page {
+  color: #032b52;
+  padding: 0 1rem 1rem;
+  background: whitesmoke;
+}
+
+.page-box {
+  min-height: 100px;
+  background: #0070cd;
+  color: #e8f4f6;
+  margin: 0 -1rem;
+  font-size: 35px;
+}
+
+.page-content {
+  border-radius: 10px;
+  margin-top: -1.5rem;
+  padding: 10px;
+  background: white;
+  color: #032b52;
+}
+
+.page-content-data {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: white;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.medical-card {
+  max-width: 500px;
+  min-width: 500px;
+  margin-bottom: 10px;
+}
+/*# sourceMappingURL=medicine-view.component.css.map */

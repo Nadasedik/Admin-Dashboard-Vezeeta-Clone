@@ -17,7 +17,7 @@
 
 .mat-list-item {
   color: white !important;
-  font-size: 0.8rem;
+  font-size: 0.8rem !important;
 }
 
 .mat-subheader {
@@ -47,6 +47,7 @@
 
 
 
+
 mat-sidenav-container{
   height: 100%;
 }
@@ -70,6 +71,13 @@ mat-sidenav{
 ::ng-deep{
   .mat-expansion-indicator::after {
     color: #f2f5f7;
+  }
+}
+
+::ng-deep {
+  .mat-expansion-indicator:after {
+    color: white !important;
+    font-size: 0.8rem !important;
   }
 }
 
