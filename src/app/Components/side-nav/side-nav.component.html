@@ -5,20 +5,20 @@
   <mat-divider></mat-divider>
   <h2 matSubheader class="mt-3">Vezzeta Admin Dashboard</h2>
   <mat-accordion>
-    <mat-expansion-panel (opened)="pharmacy" (closed)="!pharmacy" hideToggle>
+    <mat-expansion-panel (opened)="pharmacy" (closed)="!pharmacy">
       <mat-expansion-panel-header>
         <mat-panel-title>
           <a mat-list-item>
-            <mat-icon>local_pharmacy</mat-icon>Pharmacy
+            <mat-icon>medication</mat-icon>Pharmacy
           </a>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="d-flex flex-column">
-        <a mat-list-item routerLink="/medicine/view" routerLinkActive="list-item-active">
-          <mat-icon>department</mat-icon>Medicine List
+        <a mat-list-item routerLink="/medicine/list" routerLinkActive="list-item-active">
+          <mat-icon>view_list</mat-icon>Medicine List
         </a>
         <a mat-list-item routerLink="/medicine/add" routerLinkActive="list-item-active">
-          <mat-icon>department</mat-icon>Add Medicine
+          <mat-icon>add</mat-icon>Add Medicine
         </a>
       </div>
     </mat-expansion-panel>

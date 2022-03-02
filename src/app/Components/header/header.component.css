@@ -12,6 +12,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  background-color: white !important;
 }
 
 ul li {
@@ -41,5 +42,14 @@ button {
 
 ::ng-deep .mat-menu-content {
   width: 195px;
+}
+
+::ng-deep .mat-toolbar .mat-toolbar-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 /*# sourceMappingURL=header.component.css.map */
