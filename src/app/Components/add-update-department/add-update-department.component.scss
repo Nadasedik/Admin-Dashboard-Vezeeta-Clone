@@ -1,0 +1,26 @@
+@import "../home/home.component.scss";
+
+::ng-deep {
+  .mat-radio-outer-circle {
+    border-color: #0070CD !important;
+  }
+  .mat-radio-inner-circle {
+    background-color: #0070CD !important;
+  }
+
+  .mat-slide-toggle-thumb {
+    background-color: #0070CD !important;
+  }
+  .mat-slide-toggle-bar {
+    background-color: #1879c93d !important;
+  }
+}
+
+
+#btnEdit{
+  background-color: #0070CD !important;
+  color: aliceblue !important;
+}
+#btn1, #btn2  {
+  color: #0070CD !important;
+}
