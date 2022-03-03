@@ -50,7 +50,7 @@ export class MedicineListComponent implements OnInit, AfterViewInit {
   }
 
   editMedicine(data: any): void {
-    const dialogRef = this.dialog.open(MedicineEditComponent, {
+    this.dialog.open(MedicineEditComponent, {
       width: '1000px',
       height: '600px',
       data: {

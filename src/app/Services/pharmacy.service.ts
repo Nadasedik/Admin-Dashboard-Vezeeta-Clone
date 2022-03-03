@@ -17,6 +17,22 @@ export class PharmacyService {
     return this.pharmacysRef.valueChanges();
   }
 
+  create(medicine: Medicine): any {
+    return this.pharmacysRef.add({ ...medicine });
+  }
+
+  update(id: any, medicine: Medicine): Promise<void> {
+    return this.pharmacysRef.doc(id).update(medicine);
+  }
+
+  delete(id: string): Promise<void> {
+    return this.pharmacysRef.doc(id).delete();
+  }
+}
+
+
+
+
   // addMedicine(med: Medicine) {
   //   this.pharmacysRef
   //     .doc()
@@ -29,7 +45,7 @@ export class PharmacyService {
   //       molarity: med.molarity,
   //       size: med.size,
   //       quantity: med.quantity,
-  //       imageURL: med.imageURL,
+  //       url: med.imageURL,
   //     })
   //     .then((res) => {
   //       console.log(res);
@@ -38,16 +54,3 @@ export class PharmacyService {
   //       console.log(err);
   //     });
   // }
-
-  create(medicine: Medicine): any {
-    return this.pharmacysRef.add({ ...medicine });
-  }
-
-  delete(id: string): Promise<void> {
-    return this.pharmacysRef.doc(id).delete();
-  }
-
-  getMedicine(id: string) {
-    return this.pharmacysRef.doc(id).get();
-  }
-}

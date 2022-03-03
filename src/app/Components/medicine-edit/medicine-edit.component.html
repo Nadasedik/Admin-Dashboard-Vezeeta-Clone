@@ -3,144 +3,237 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-8">
-        <div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>Medicine ID</mat-label>
-            <i matSuffix class="fa-solid fa-fingerprint"></i>
-            <input matInput [(ngModel)]="newID" minlength="10" maxlength="10">
-            <!-- <mat-error *ngIf="handleError('id', 'required')">
-            You must provide a <strong>10 digit ID</strong>
-          </mat-error>
-          <mat-error *ngIf="handleError('id', 'minlength')">
-            Your <strong>ID</strong> must be <strong>10 digit</strong>
-          </mat-error> -->
-          </mat-form-field>
-        </div>
 
-        <div class="row">
-          <div class="col-6">
-            <mat-form-field appearance="outline">
-              <mat-label>Medicine Name in English</mat-label>
-              <i matSuffix class="fa-solid fa-file-signature"></i>
-              <input matInput [(ngModel)]="newNameEN">
-              <!-- <mat-error *ngIf="medicineForm.get('nameEN')?.invalid
-            && (medicineForm.get('nameEN')?.dirty
-            || medicineForm.get('nameEN')?.touched)">
-              Please provide a <strong>name</strong> in <strong>English</strong>.
-            </mat-error> -->
-            </mat-form-field>
-          </div>
-          <div class="col-6">
-            <mat-form-field appearance="outline">
-              <mat-label>اسم الدواء باللغة العربية</mat-label>
-              <i matSuffix class="fa-solid fa-file-signature"></i>
-              <input matInput [(ngModel)]="newNameAR">
-              <!-- <mat-error *ngIf="medicineForm.get('nameAR')?.invalid
-            && (medicineForm.get('nameAR')?.dirty
-            || medicineForm.get('nameAR')?.touched)">
-              Please provide a <strong>name</strong> in <strong>Arabic</strong>.
-            </mat-error> -->
-            </mat-form-field>
-          </div>
-        </div>
+        <form [formGroup]="medicineForm" (ngSubmit)="(updateMedicine(this.data.uid ,medicineForm.value))">
 
-        <div class="row">
-          <div class="col-6">
+          <div class="row">
             <mat-form-field appearance="outline">
-              <mat-label>Medicine Category | فئة الدواء</mat-label>
-              <mat-select name="category" [(ngModel)]="newCategory">
-                <mat-option>Select medicine category</mat-option>
-                <mat-option *ngFor="let category of categoryList" [value]='category.id'>
-                  {{category.name}}
-                </mat-option>
-              </mat-select>
+              <mat-label>Medicine ID</mat-label>
+              <i matSuffix class="fa-solid fa-fingerprint"></i>
 
-              <!-- <mat-error *ngIf="medicineForm.get('category')?.invalid
-            && (medicineForm.get('category')?.dirty
-            || medicineForm.get('category')?.touched)">
-            Please select proper <strong>category</strong>.
-          </mat-error> -->
-            </mat-form-field>
-          </div>
-          <div class="col-6">
-            <mat-form-field appearance="outline">
-              <mat-label>Medicine Quantity | كمية الدواء</mat-label>
-              <i matSuffix class="fa-solid fa-warehouse"></i>
-              <input matInput [ngModel]="newQuantity">
-              <!-- <mat-error *ngIf="medicineForm.get('quantity')?.invalid
-            && (medicineForm.get('quantity')?.dirty
-            || medicineForm.get('quantity')?.touched)">
-            Please provide the available <strong>quantity</strong> of the medicine.
-          </mat-error> -->
-            </mat-form-field>
-          </div>
-        </div>
+              <input matInput formControlName="id" minlength="10" maxlength="10" pattern="[0-9A-Za-z]*">
 
-        <div class="row">
-          <div class="col-6">
-            <mat-form-field appearance="outline">
-              <mat-label>Medicine Molarity | تركيز الدواء</mat-label>
-              <i matSuffix class="fa-solid fa-prescription-bottle"></i>
-              <input matInput [(ngModel)]="newMolarity">
-              <!-- <mat-error *ngIf="medicineForm.get('molarity')?.invalid
-            && (medicineForm.get('molarity')?.dirty
-            || medicineForm.get('molarity')?.touched)">
-            Please provide the <strong>molarity</strong> of medicine.
-          </mat-error> -->
+              <mat-error *ngIf="handleError('id', 'required') || handleError('id', 'pattern')">
+                <div class="row">
+                  <div class="col-6">
+                    You must provide an <strong>unique ID</strong>
+                  </div>
+                  <div class="col-6 d-flex justify-content-start" style="direction:rtl">
+                    يجب إدخال كود الدواء مكون من <strong> ١٠ ارقام او حروف</strong>
+                  </div>
+                </div>
+              </mat-error>
+              <mat-error *ngIf="handleError('id', 'minlength')">
+                <div class="row">
+                  <div class="col-6">
+                    Your <strong>ID</strong> must be <strong>10 digit</strong>
+                  </div>
+                  <div class="col-6 d-flex justify-content-start" style="direction:rtl">
+                    الرجاء إدخال كود الدواء مكون من <strong> ١٠ ارقام او حروف</strong>
+                  </div>
+                </div>
+              </mat-error>
             </mat-form-field>
           </div>
-          <div class="col-6">
-            <mat-form-field appearance="outline">
-              <mat-label>Packet Size | حجم العبوة</mat-label>
-              <i matSuffix class="fa-solid fa-syringe"></i>
-              <input matInput [(ngModel)]="newSize">
-              <!-- <mat-error *ngIf="medicineForm.get('size')?.invalid
-            && (medicineForm.get('size')?.dirty
-            || medicineForm.get('size')?.touched)">
-            Please provide the <strong>size</strong> of the medicine.
-          </mat-error> -->
-            </mat-form-field>
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Medicine Name in English</mat-label>
+                <i matSuffix class="fa-solid fa-file-signature"></i>
+                <input matInput formControlName="nameEN" pattern="[A-Za-z ]*">
+                <mat-error *ngIf="handleError('nameEN', 'required')">
+                  <div class="row">
+                    <div class="col-6">
+                      You must enter a <strong>name</strong>.
+                    </div>
+                    <div class="col-6 d-flex justify-content-start" style="direction:rtl">
+                      يجب إدخال <strong> اسم </strong> الدواء
+                    </div>
+                  </div>
+                </mat-error>
+                <mat-error *ngIf="handleError('nameEN', 'pattern')">
+                  <div class="row">
+                    <div class="col-6">
+                      Please provide a <strong>name</strong> in <strong>English</strong>.
+                    </div>
+                    <div class="col-6 d-flex justify-content-start" style="direction:rtl">
+                      الرجاء ادخال اسم الدواء <strong> باللغة الانجليزية </strong>
+                    </div>
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-form-field appearance="outline">
+                <mat-label>اسم الدواء باللغة العربية</mat-label>
+                <i matSuffix class="fa-solid fa-file-signature"></i>
+                <input matInput formControlName="nameAR" pattern="[أ-ي ]*">
+                <mat-error *ngIf="handleError('nameAR', 'required')">
+                  <div class="row">
+                    <div class="col-6">
+                      You must enter a <strong>name</strong>.
+                    </div>
+                    <div class="col-6 d-flex justify-content-start" style="direction:rtl">
+                      يجب إدخال <strong> اسم </strong> الدواء
+                    </div>
+                  </div>
+                </mat-error>
+                <mat-error *ngIf="handleError('nameAR', 'pattern')">
+                  <div class="row">
+                    <div class="col-6">
+                      Please provide a <strong>name</strong> in <strong>Arabic</strong>.
+                    </div>
+                    <div class="col-6 d-flex justify-content-start" style="direction:rtl">
+                      الرجاء إدخال اسم الدواء <strong>باللغة العربية</strong>
+                    </div>
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col-6">
-            <mat-form-field appearance="outline">
-              <mat-label>Medicine Price | سعر الدواء</mat-label>
-              <i matSuffix class="fa-solid fa-money-bill"></i>
-              <input matInput [(ngModel)]="newPrice">
-              <!-- <mat-error *ngIf="medicineForm.get('price')?.invalid
-            && (medicineForm.get('price')?.dirty
-            || medicineForm.get('price')?.touched)">
-            Please provide the medicine <strong>price</strong>.
-          </mat-error> -->
-            </mat-form-field>
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Medicine Category | فئة الدواء</mat-label>
+                <mat-select name="category" formControlName="category">
+                  <mat-option>Select medicine category</mat-option>
+                  <mat-option *ngFor="let category of categoryList" [value]='category.id'>
+                    {{category.name}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="handleError('category', 'required')">
+                  <div class="row">
+                    <div class="col-6">
+                      Please select proper <strong>category</strong>.
+                    </div>
+                    <div class="col-6 d-flex justify-content-start" style="direction:rtl">
+                      الرجاء إختيار <strong>الفئة</strong> المناسبة
+                    </div>
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Medicine Quantity | كمية الدواء</mat-label>
+                <i matSuffix class="fa-solid fa-warehouse"></i>
+                <input matInput formControlName="quantity" pattern="[0-9]*">
+                <mat-error *ngIf="handleError('quantity', 'required') || handleError('quantity', 'pattern')">
+                  <div class="row">
+                    <div class="col-6">
+                      Please provide the available <strong>quantity</strong> of the medicine.
+                    </div>
+                    <div class="col-6 d-flex justify-content-start" style="direction:rtl">
+                      الرجاء إدخال <strong> الكمية </strong> المتاحة من الدواء.
+                    </div>
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
           </div>
-          <div class="col-6">
-            <mat-form-field appearance="outline">
-              <mat-label>Medicine Image | صورة الدواء</mat-label>
-              <i matSuffix class="fa-solid fa-image"></i>
-              <input matInput [ngModel]="newImageURL">
-              <!-- <mat-error *ngIf="medicineForm.get('url')?.invalid
-            && (medicineForm.get('url')?.dirty
-            || medicineForm.get('url')?.touched)">
-            Please provide a valid image <strong>URL</strong>.
-          </mat-error> -->
-            </mat-form-field>
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Medicine Molarity | تركيز الدواء</mat-label>
+                <i matSuffix class="fa-solid fa-prescription-bottle"></i>
+                <input matInput formControlName="molarity" pattern="[0-9]*">
+                <mat-error *ngIf="handleError('molarity', 'required') || handleError('molarity', 'pattern')">
+                  <div class="row">
+                    <div class="col-6">
+                      Please provide the <strong>molarity</strong> of medicine.
+                    </div>
+                    <div class="col-6 d-flex justify-content-start" style="direction:rtl">
+                      الرجاء إدخال <strong> تركيز </strong> الدواء.
+                    </div>
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Packet Size | حجم العبوة</mat-label>
+                <i matSuffix class="fa-solid fa-syringe"></i>
+                <input matInput formControlName="size" pattern="[0-9]*">
+                <mat-error *ngIf="handleError('size', 'required') || handleError('size', 'pattern')">
+                  <div class="row">
+                    <div class="col-6">
+                      Please provide the <strong>size</strong> of the medicine.
+                    </div>
+                    <div class="col-6 d-flex justify-content-start" style="direction:rtl">
+                      الرجاء إدخال <strong> حجم </strong> عبوة الدواء.
+                    </div>
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="col-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Medicine Price | سعر الدواء</mat-label>
+                <i matSuffix class="fa-solid fa-money-bill"></i>
+                <input matInput formControlName="price" pattern="[0-9]*">
+                <mat-error *ngIf="handleError('price', 'required') || handleError('price', 'pattern')">
+                  <div class="row">
+                    <div class="col-6">
+                      Please provide the medicine <strong>price</strong>.
+                    </div>
+                    <div class="col-6 d-flex justify-content-start" style="direction:rtl">
+                      الرجاء إدخال <strong> سعر </strong> عبوة الدواء.
+                    </div>
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-form-field appearance="outline">
+                <mat-label>Medicine Image | صورة الدواء</mat-label>
+                <i matSuffix class="fa-solid fa-image"></i>
+                <input matInput
+                  pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?"
+                  formControlName="url" type="url">
+                <mat-error *ngIf="handleError('url', 'required')">
+                  <div class="row">
+                    <div class="col-6">
+                      You must provide an <strong>image URL</strong>.
+                    </div>
+                    <div class="col-6 d-flex justify-content-start" style="direction:rtl">
+                      يجب إدخال <strong> عنوان </strong> للصورة.
+                    </div>
+                  </div>
+                </mat-error>
+                <mat-error *ngIf="handleError('url', 'pattern')">
+                  <div class="row">
+                    <div class="col-6">
+                      Please provide a <strong>valid</strong> image <strong>URL</strong>.
+                    </div>
+                    <div class="col-6 d-flex justify-content-start" style="direction:rtl">
+                      الرجاء إدخال <strong> عنوان </strong> صالح للصورة.
+                    </div>
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6  d-flex justify-content-start">
+              <button mat-raised-button type="submit" [disabled]="medicineForm.invalid">
+                Update Medicine
+                <mat-icon>save</mat-icon>
+              </button>
+            </div>
+            <div class="col-6  d-flex justify-content-end">
+              <button mat-raised-button (click)="removeMedicine()" color="warn">
+                Delete Medicine
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
       <div class="col-4 position-relative">
-        <img [src]="newImageURL" width="300" class="position-absolute top-50 start-50 translate-middle">
+        <img [src]="this.data.url" width="300" class="position-absolute top-50 start-50 translate-middle">
       </div>
     </div>
   </div>
-</div>
-<div mat-dialog-actions class="mt-0">
-  <button mat-raised-button (click)="updateMedicine()" color="primary">
-    <mat-icon>save</mat-icon>
-  </button>
-  <button mat-raised-button color="warn">
-    <mat-icon>delete</mat-icon>
-  </button>
 </div>
