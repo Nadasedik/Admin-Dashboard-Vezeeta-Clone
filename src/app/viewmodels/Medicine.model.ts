@@ -7,5 +7,5 @@ export interface Medicine {
   molarity: number;
   size: number;
   quantity: number;
-  imageURL: string;
+  url: string;
 }

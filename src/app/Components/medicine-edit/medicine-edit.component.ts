@@ -1,7 +1,9 @@
+import { Medicine } from 'src/app/viewmodels/Medicine.model';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { PharmacyService } from 'src/app/Services/pharmacy.service';
 import { MCategory } from 'src/app/viewmodels/MCategory.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -9,16 +11,8 @@ import { MCategory } from 'src/app/viewmodels/MCategory.model';
   templateUrl: './medicine-edit.component.html',
   styleUrls: ['./medicine-edit.component.scss']
 })
-export class MedicineEditComponent {
-  newID: string = this.data.id;
-  newNameAR: string = this.data.nameAR;
-  newNameEN: string = this.data.nameEN;
-  newCategory: string = this.data.category;
-  newPrice: number = this.data.price;
-  newMolarity: number = this.data.molarity;
-  newSize: number = this.data.size;
-  newQuantity: number = this.data.quantity;
-  newImageURL: string = this.data.url;
+export class MedicineEditComponent implements OnInit {
+  medicineForm = new FormGroup({});
 
   categoryList: MCategory[] = [
     { id: 1, name: 'Tablet - حبوب' },
@@ -29,66 +23,46 @@ export class MedicineEditComponent {
   ];
 
   constructor(
+    private fb: FormBuilder,
     private pharmacy: PharmacyService,
     public dialog: MatDialogRef<MedicineEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  updateMedicine() {
-    this.pharmacy.pharmacysRef.doc(this.data.id).update({
-      id: this.newID,
+  ngOnInit(): void {
+    this.medicineForm = this.fb.group({
+      id: [this.data.id, Validators.required],
+      nameAR: [this.data.nameAR, Validators.required],
+      nameEN: [this.data.nameEN, Validators.required],
+      category: [this.data.category, Validators.required],
+      quantity: [this.data.quantity, Validators.required],
+      molarity: [this.data.molarity, Validators.required],
+      size: [this.data.size, Validators.required],
+      price: [this.data.price, Validators.required],
+      url: [this.data.url, Validators.required],
     })
-    this.dialog.close();
-    console.log(this.data.id)
-    console.log(this.newID)
+  }
+
+  public handleError = (controlName: string, errorName: string) => {
+    return this.medicineForm.controls[controlName].hasError(errorName);
+  }
+
+  updateMedicine(id: any, data: Medicine) {
+    this.pharmacy.update(id, { ...data })
+      .then(() => {
+        console.log('The Medicine was updated successfully!')
+      })
+      .catch((err: any) => console.log(err));
+    this.dialog.close()
+  }
+
+  removeMedicine() {
+    this.pharmacy.delete(this.data.id)
+      .then(() => {
+        console.log('The Medicine was deleted successfully!');
+      })
+      .catch(err => console.log(err));
+    this.dialog.close()
   }
 }
 
-
-// nameAR: this.newNameAR,
-// nameEN: this.newNameEN,
-// category: this.newCategory,
-// price: this.newPrice,
-// molarity: this.newMolarity,
-// size: this.newSize,
-// quantity: this.newQuantity,
-// imageURL: this.newImageURL,
-
-
-
-  // updateMedicine(): void {
-  //   const data = {
-  //     id: this.currentMedicine.id,
-  //     nameAR: this.currentMedicine.nameAR,
-  //     nameEN: this.currentMedicine.nameEN,
-  //     category: this.currentMedicine.category,
-  //     price: this.currentMedicine.price,
-  //     molarity: this.currentMedicine.molarity,
-  //     size: this.currentMedicine.size,
-  //     quantity: this.currentMedicine.quantity,
-  //     imageURL: this.currentMedicine.imageURL,
-  //   };
-  //   if (this.currentMedicine.id) {
-  //     this.pharmacy.update(this.currentMedicine.id, data)
-  //       .then(() => {
-  //         console.log('The Medicine was deleted successfully!')
-  //       })
-  //       .catch(err => console.log(err));
-  //   }
-  // }
-
-  // deleteMedicine(): void {
-  //   if (this.currentMedicine.id) {
-  //     this.pharmacy.delete(this.currentMedicine.id)
-  //       .then(() => {
-  //         console.log('The Medicine was deleted successfully!');
-  //       })
-  //       .catch(err => console.log(err));
-  //     console.log(this.currentMedicine.id)
-  //   }
-  // }
-
-  // changeCategory(event: any) {
-  //   // this.medicineForm.value.category?.setValue(event.target.value, {
-  //   //   onlySelf: true,
-  //   // });
