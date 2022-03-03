@@ -17,7 +17,7 @@
 
 .mat-list-item {
   color: white !important;
-  font-size: 0.8rem;
+  font-size: 0.8rem !important;
 }
 
 .mat-subheader {
@@ -45,6 +45,7 @@
   border-radius: 5px;
 }
 
+
 ::ng-deep{
 
 .mat-expansion-indicator::after 
@@ -52,3 +53,41 @@
   color:rgb(255, 255, 255) ;
 }
 }
+
+
+
+
+mat-sidenav-container{
+  height: 100%;
+}
+
+mat-sidenav , mat-sidenav-content{
+  padding:16px
+}
+
+mat-sidenav{
+  background-color: aquamarine;
+  width: 200px;
+}
+.sidebarContainer {
+// width: 15%;
+  background-color: rgba(5, 25, 44, 0.233);
+  height: 130%;
+  padding-top:3em
+}
+
+
+::ng-deep{
+  .mat-expansion-indicator::after {
+    color: #f2f5f7;
+  }
+}
+
+
+::ng-deep {
+  .mat-expansion-indicator:after {
+    color: white !important;
+    font-size: 0.8rem !important;
+  }
+}
+

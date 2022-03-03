@@ -1,10 +1,12 @@
 import { AfterViewInit, Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DepartmentsService } from 'src/app/Services/departments.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogComponent } from './../common/dialog/dialog.component';
+import { LangService } from 'src/app/Services/lang.service';
+import { IDepartment } from 'src/app/viewmodels/idepartment';
 
 @Component({
   selector: 'app-departments',
@@ -13,24 +15,35 @@ import { DialogComponent } from './../common/dialog/dialog.component';
 })
 export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   panelOpenState: boolean = false;
-  allDept: any[] = [];
+  allDept: IDepartment[] = [];
   displayedColumns: string[] = ['name', 'head',
   'date', 'numOfDocs', 'popularity', 'btns'];
-  dataSource: any;
+
+  // dataSource: any;
   //da ll paginator
   //da ll delete 3l4an yreload da
   sentDpts: any[] = [];
   //l filter
   FilterKey = '';
+  //l localiation
+  lang = '';
+  //for filter
+  dpts!: IDepartment[];
+  dataSource = new MatTableDataSource(this.dpts);
+
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   pageEvent!: PageEvent;
   constructor(private deptSet: DepartmentsService,
-    private _router: Router, private _dialog: MatDialog) { }
+    private _router: Router, private _dialog: MatDialog,
+    private langService: LangService) {
+      this.dataSource = new MatTableDataSource<IDepartment>(this.allDept)
+    }
 
   ngOnInit(): void {
     this.getAllDepts();
     this.filterData();
+    this.lang = this.langService.LangParam;
   }
   ngAfterViewInit(): void {
     // this.dataSource.paginator = this.paginator;
@@ -44,7 +57,7 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
       res?.forEach(singleDoc => {
         this.allDept.push(singleDoc);
       })
-      this.dataSource = this.allDept;
+      this.dataSource = new MatTableDataSource(this.allDept); //7sl edit hena
       this.sentDpts = this.allDept;
     }).catch(err => {
       console.log(err);
@@ -58,7 +71,9 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
       console.log('from ts', data);
     })
   }
-  openEditForm(id: string) {
+  openEditForm(element: any,id: string) {
+    // console.log('element', element.preventDefault());
+
     console.log('id', id);
     this._router.navigate(['/departments/update/', id]);
   }
@@ -83,7 +98,11 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
     });
   }
 
-
+  //for filter
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
 
 }
