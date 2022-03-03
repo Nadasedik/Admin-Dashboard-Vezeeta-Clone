@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
   pharmacy: boolean = false;
+  patients:boolean =false;
   constructor() { }
 
   ngOnInit(): void {

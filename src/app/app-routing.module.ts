@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddUpdateDepartmentComponent } from './Components/add-update-department/add-update-department.component';
 import { MedicineAddComponent } from './Components/medicine-add/medicine-add.component';
 import { MedicineViewComponent } from './Components/medicine-view/medicine-view.component';
+import { PatientsComponent } from './Components/Patients/Patients.component';
+import { AddEditPatientsComponent } from './Components/AddEditPatients/AddEditPatients.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -15,6 +17,9 @@ const routes: Routes = [
   { path: "departments", component: DepartmentsComponent },
   { path: "departments/add", component: AddUpdateDepartmentComponent },
   { path: "departments/update/:id", component: AddUpdateDepartmentComponent },
+  { path: "patients", component: PatientsComponent},
+  {path: "patients/add", component: AddEditPatientsComponent},
+  {path:"patients/edit/:id", component: AddEditPatientsComponent},
 ];
 
 @NgModule({

@@ -1,3 +1,5 @@
+import { AddEditPatientsComponent } from './Components/AddEditPatients/AddEditPatients.component';
+import { PatientsComponent } from './Components/Patients/Patients.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider'
@@ -19,6 +21,10 @@ import { environment } from 'src/environments/environment';
 //firestore
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+//import {AngularFireStorageModule} from '@angular/fire/storage'
+
 import { AddUpdateDepartmentComponent } from './Components/add-update-department/add-update-department.component';
 import { AllDepartmentsComponent } from './Components/all-departments/all-departments.component';
 import { BreadcrumbComponent } from './Components/common/breadcrumb/breadcrumb.component';
@@ -54,6 +60,8 @@ import { MatCardModule } from '@angular/material/card';
     DashboardComponent,
     MedicineViewComponent,
     MedicineAddComponent,
+    PatientsComponent,
+    AddEditPatientsComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +79,9 @@ import { MatCardModule } from '@angular/material/card';
     MatSelectModule,
     MatCardModule,
     AngularFireModule.initializeApp(environment.firestoreConfig),
+    AngularFireStorageModule,
+    //provideStorage(() => getStorage()),
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

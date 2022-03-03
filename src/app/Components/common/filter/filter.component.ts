@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class FilterComponent implements OnInit {
   @Input() title = '';
   @Input() route = '';
+  @Input() data:any ;
   //filter
   FilterKey: any;
   constructor(private _router: Router) { }
@@ -22,5 +23,11 @@ export class FilterComponent implements OnInit {
 openForm(): void {
   this._router.navigate([this.route]);
 }
-
+// applyFilter(event: Event) {
+//   const filterValue = (event.target as HTMLInputElement).value;
+//   this.data.filter = filterValue.trim().toLowerCase();
+//   this.data.filterPredicate = 
+//   (data: any, filter: string) => data.Name.indexOf(filter) != -1;
+//   console.log(this.data.filter)
+// }
 }

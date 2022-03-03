@@ -44,3 +44,11 @@
   background-color: rgba(0, 255, 255, 0.075);
   border-radius: 5px;
 }
+
+::ng-deep{
+
+.mat-expansion-indicator::after 
+{
+  color:rgb(255, 255, 255) ;
+}
+}
