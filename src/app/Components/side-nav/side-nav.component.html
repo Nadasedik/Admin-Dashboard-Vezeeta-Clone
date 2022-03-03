@@ -11,6 +11,18 @@
           <a mat-list-item>
             <mat-icon>medication</mat-icon>Pharmacy
           </a>
+          </mat-panel-title>
+          </mat-expansion-panel-header>
+          </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="pharmacy" (closed)="!pharmacy">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <a mat-list-item>
+            <mat-icon>pharmacy</mat-icon>Pharmacy
+
+          </a>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="d-flex flex-column">
@@ -23,5 +35,50 @@
       </div>
     </mat-expansion-panel>
   </mat-accordion>
+
+  <!-- departments -->
+  <mat-accordion>
+    <mat-expansion-panel (opened)="department = true"
+                          (closed)="department = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <a mat-list-item>
+            <mat-icon>departmnt</mat-icon> Departments
+          </a>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="d-flex flex-column">
+        <a mat-list-item [routerLink]="['departments']" [queryParams]="{lang: 'EN'}"
+        routerLinkActive="list-item-active"
+        class="text-decoration-none text-light my-2">
+        <mat-icon>departmnt</mat-icon> Department List
+        </a>
+        <a  mat-list-item [routerLink]="['departments/add']" routerLinkActive="list-item-active">
+          <mat-icon>departmnt</mat-icon>   Add Department
+      </a>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion>
+    <mat-expansion-panel (opened)="patients" (closed)="!patients" >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <a mat-list-item>
+            <mat-icon>patients</mat-icon>Patients
+          </a>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="d-flex flex-column">
+        <a mat-list-item routerLink="/patients" routerLinkActive="list-item-active">
+          <mat-icon>patients</mat-icon>All Patients
+        </a>
+        <a mat-list-item routerLink="/patients/add" routerLinkActive="list-item-active">
+          <mat-icon>patients</mat-icon>Add Patients
+        </a>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
 
 </mat-nav-list>
