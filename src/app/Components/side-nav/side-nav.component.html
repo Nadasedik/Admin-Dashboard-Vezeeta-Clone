@@ -60,4 +60,25 @@
     </mat-expansion-panel>
   </mat-accordion>
 
+  <mat-accordion>
+    <mat-expansion-panel (opened)="patients" (closed)="!patients" >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <a mat-list-item>
+            <mat-icon>patients</mat-icon>Patients
+          </a>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="d-flex flex-column">
+        <a mat-list-item routerLink="/patients" routerLinkActive="list-item-active">
+          <mat-icon>patients</mat-icon>All Patients
+        </a>
+        <a mat-list-item routerLink="/patients/add" routerLinkActive="list-item-active">
+          <mat-icon>patients</mat-icon>Add Patients
+        </a>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
 </mat-nav-list>
