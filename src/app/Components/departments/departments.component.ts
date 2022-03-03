@@ -1,3 +1,4 @@
+import { IDepartment } from './../../viewmodels/idepartment';
 import { AfterViewInit, Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -13,9 +14,9 @@ import { DialogComponent } from './../common/dialog/dialog.component';
 })
 export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   panelOpenState: boolean = false;
-  allDept: any[] = [];
+  allDept: IDepartment[] = [];
   displayedColumns: string[] = ['name', 'head',
-  'date', 'numOfDocs', 'popularity', 'btns'];
+    'date', 'numOfDocs', 'popularity', 'btns'];
   dataSource: any;
   //da ll paginator
   //da ll delete 3l4an yreload da

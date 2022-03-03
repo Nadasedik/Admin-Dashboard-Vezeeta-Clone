@@ -48,25 +48,16 @@ export class MedicineEditComponent implements OnInit {
   }
 
   updateMedicine(id: any, data: Medicine) {
-
-    console.log('before id ' + id)
-    console.log('before data.id ' + this.data.id)
-    console.log('before form.id ' + this.medicineForm.get('id')?.value)
-
     this.pharmacy.update(id, { ...data })
       .then(() => {
         console.log('The Medicine was updated successfully!')
       })
       .catch((err: any) => console.log(err));
     this.dialog.close()
-
-    console.log('after id ' + id)
-    console.log('after data.id ' + this.data.id)
-    console.log('after form.id ' + this.medicineForm.get('id')?.value)
   }
 
   removeMedicine() {
-    this.pharmacy.delete(this.data.uid)
+    this.pharmacy.delete(this.data.id)
       .then(() => {
         console.log('The Medicine was deleted successfully!');
       })

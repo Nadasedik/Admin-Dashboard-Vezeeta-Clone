@@ -4,15 +4,12 @@
     <div class="row">
       <div class="col-8">
 
-        <form [formGroup]="medicineForm" (ngSubmit)="(updateMedicine(this.data.uid ,medicineForm.value))">
-
+        <form [formGroup]="medicineForm" (ngSubmit)="(updateMedicine(this.data.id ,medicineForm.value))">
           <div class="row">
             <mat-form-field appearance="outline">
               <mat-label>Medicine ID</mat-label>
               <i matSuffix class="fa-solid fa-fingerprint"></i>
-
               <input matInput formControlName="id" minlength="10" maxlength="10" pattern="[0-9A-Za-z]*">
-
               <mat-error *ngIf="handleError('id', 'required') || handleError('id', 'pattern')">
                 <div class="row">
                   <div class="col-6">
@@ -95,7 +92,7 @@
             <div class="col-6">
               <mat-form-field appearance="outline">
                 <mat-label>Medicine Category | فئة الدواء</mat-label>
-                <mat-select name="category" formControlName="category">
+                <mat-select name="category" formControlName="category" [(ngModel)]="medicineForm.value.category">
                   <mat-option>Select medicine category</mat-option>
                   <mat-option *ngFor="let category of categoryList" [value]='category.id'>
                     {{category.name}}
@@ -216,14 +213,16 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-6  d-flex justify-content-start">
-              <button mat-raised-button type="submit" [disabled]="medicineForm.invalid">
+            <div class="col-6  d-flex justify-content-end">
+              <button mat-raised-button style="background-color: #0071cd;color:white" type="submit"
+                [disabled]="medicineForm.invalid">
                 Update Medicine
                 <mat-icon>save</mat-icon>
               </button>
             </div>
-            <div class="col-6  d-flex justify-content-end">
-              <button mat-raised-button (click)="removeMedicine()" color="warn">
+            <div class="col-6  d-flex justify-content-start">
+              <button mat-raised-button style="background-color: red;color:white" (click)="removeMedicine()"
+                color="warn">
                 Delete Medicine
                 <mat-icon>delete</mat-icon>
               </button>

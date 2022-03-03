@@ -3,31 +3,18 @@
     Add Medicine
   </div>
   <div class="page-content shadow">
-    <form class="p-5" [formGroup]="medicineForm" (ngSubmit)="(AddMedicine(medicineForm.value))">
+    <form class="p-5" [formGroup]="medicineForm"
+      (ngSubmit)="(AddMedicine(medicineForm.get('id')?.value,medicineForm.value))">
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Medicine ID</mat-label>
           <i matSuffix class="fa-solid fa-fingerprint"></i>
-          <input matInput formControlName="id" minlength="10" maxlength="10" pattern="[0-9A-Za-z]*">
-          <mat-error *ngIf="handleError('id', 'required') || handleError('id', 'pattern')">
-            <div class="row">
-              <div class="col-6">
-                You must provide an <strong>unique ID</strong>
-              </div>
-              <div class="col-6 d-flex justify-content-start" style="direction:rtl">
-                يجب إدخال كود الدواء مكون من <strong> ١٠ ارقام او حروف</strong>
-              </div>
-            </div>
+          <input matInput formControlName="id" minlength="10" maxlength="10">
+          <mat-error *ngIf="handleError('id', 'required')">
+            You must provide a <strong>10 digit ID</strong>
           </mat-error>
           <mat-error *ngIf="handleError('id', 'minlength')">
-            <div class="row">
-              <div class="col-6">
-                Your <strong>ID</strong> must be <strong>10 digit</strong>
-              </div>
-              <div class="col-6 d-flex justify-content-start" style="direction:rtl">
-                الرجاء إدخال كود الدواء مكون من <strong> ١٠ ارقام او حروف</strong>
-              </div>
-            </div>
+            Your <strong>ID</strong> must be <strong>10 digit</strong>
           </mat-error>
         </mat-form-field>
       </div>
