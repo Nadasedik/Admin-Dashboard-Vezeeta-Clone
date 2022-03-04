@@ -35,6 +35,7 @@ import { MedicineViewComponent } from './Components/medicine-view/medicine-view.
 import { MedicineAddComponent } from './Components/medicine-add/medicine-add.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
 
 @NgModule({
   declarations: [
@@ -71,8 +72,11 @@ import { MatCardModule } from '@angular/material/card';
     MatSelectModule,
     MatCardModule,
     AngularFireModule.initializeApp(environment.firestoreConfig),
+    AngularFireStorageModule
   ],
-  providers: [],
+  providers: [
+    {provide: BUCKET, useValue: 'my-bucket-name'} //to customise the storage bucket.
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

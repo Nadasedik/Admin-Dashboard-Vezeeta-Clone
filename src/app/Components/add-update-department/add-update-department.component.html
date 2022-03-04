@@ -121,7 +121,8 @@
               <mat-form-field appearance="fill" class="my-2 mx-5"
               *ngIf="ViewInModal">
                 <mat-label>Modal Icon</mat-label>
-                <input matInput formControlName="modalIcon" name="modalIcon">
+                <input matInput formControlName="modalIcon" name="modalIcon"
+>
                 <mat-error *ngIf="hasErr('modalIcon', 'required')">
                   this field is required now
                 </mat-error>
