@@ -1,10 +1,11 @@
 export interface Medicine {
   id: string;
-  name: string;
+  nameEN: string;
+  nameAR: string;
   category: string;
-  price: string;
-  molarity: string;
-  size: string;
-  quantity: string;
-  imageURL: string;
+  price: number;
+  molarity: number;
+  size: number;
+  quantity: number;
+  url: string;
 }

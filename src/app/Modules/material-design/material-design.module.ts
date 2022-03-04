@@ -17,6 +17,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
+
 @NgModule({
   declarations: [],
   imports: [
@@ -38,7 +39,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatToolbarModule,
     MatSidenavModule,
     MatSnackBarModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    
   ]
 })
 export class MaterialDesignModule { }

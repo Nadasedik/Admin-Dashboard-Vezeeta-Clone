@@ -1,0 +1,229 @@
+<div class="container-fluid page">
+  <div class="page-box p-5">
+    {{add? 'Add Patient' : 'Edit Patient'}}
+  </div>
+  <div class="page-content shadow">
+    <form class="p-5" [formGroup]="PatientsForm" (ngSubmit)=" add ? AddPatient(): EditPatient()">
+
+      <div class="row ">
+
+        <mat-form-field appearance="outline" >
+          <mat-label>Name</mat-label>
+          <i matSuffix class="fa-solid fa-file-signature"></i>
+          <input matInput formControlName="Name" name="Name"
+          [value]="updatePatient?.Name">
+          <!-- <mat-error *ngIf="PatientsForm.get('Name')?.invalid
+            && (PatientsForm.get('Name')?.dirty
+            || PatientsForm.get('Name')?.touched)">
+            Please provide a Name.
+          </mat-error> -->
+          <mat-error *ngIf="hasErr('Name', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('Name', 'pattern')">
+            this Name must be at least 3 characters 
+          </mat-error>
+        </mat-form-field>
+
+      
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+          <i matSuffix class="fa-solid fa-warehouse"></i>
+          <input matInput formControlName="Address" name="Address"
+          [value]="updatePatient?.Address">
+          <!-- <mat-error *ngIf="PatientsForm.get('Address')?.invalid
+            && (PatientsForm.get('Address')?.dirty
+            || PatientsForm.get('Address')?.touched)">
+            Please provide the Address.
+          </mat-error> -->
+          <mat-error *ngIf="hasErr('Address', 'required')">
+            this field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Mobile</mat-label>
+          <i matSuffix class="fa-solid fa-phone"></i>
+          <input matInput formControlName="Mobile" name="Mobile"
+          [value]="updatePatient?.Mobile">
+          <!-- <mat-error *ngIf="PatientsForm.get('Mobile')?.errors?.['required']">
+            Please Mobile Number is required
+          </mat-error>
+          <mat-error *ngIf="PatientsForm.get('Mobile')?.errors?.['pattern']">
+            Please enter valid a Mobile Number
+          </mat-error> -->
+          <mat-error *ngIf="hasErr('Mobile', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('Mobile', 'pattern')">
+            this Mobile Number is not valid 
+          </mat-error>
+        </mat-form-field>
+      <!-- </div>
+
+      <div class="row"> -->
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Email</mat-label>
+          <i matSuffix class="fa-solid fa-at"></i>
+          <input matInput formControlName="Email" name="Email"
+          [value]="updatePatient?.Email">
+          <!-- <mat-error *ngIf="PatientsForm.get('Email')?.invalid
+            && (PatientsForm.get('Email')?.dirty
+            || PatientsForm.get('Email')?.touched)">
+            Please provide an Email
+          </mat-error> -->
+          <mat-error *ngIf="hasErr('Email', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('Email', 'email')">
+            this Email not valid.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Birth Date</mat-label>
+          <!-- <i  matSuffix class="fa-solid fa-cake-candles"></i> -->
+          <input matInput [matDatepicker]="picker" formControlName="BirthDate" 
+          [value]="1/1/2000 |date">
+          
+          <!-- <mat-error *ngIf="PatientsForm.get('BirthDate')?.invalid
+            && (PatientsForm.get('BirthDate')?.dirty
+            || PatientsForm.get('BirthDate')?.touched)">
+            Please provide the Birth Date.
+          </mat-error> -->
+          <mat-error *ngIf="hasErr('BirthDate', 'required')">
+            this field is required
+          </mat-error>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+      <!-- </div>
+
+      <div class="row"> -->
+        <!-- <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Gender</mat-label>
+          <i matSuffix class="fa-solid fa-venus-mars"></i>
+          <input matInput formControlName="Gender" name="Gender"
+          [value]="updatePatient?.Gender">
+          <mat-error *ngIf="PatientsForm.get('Gender')?.invalid
+            && (PatientsForm.get('Gender')?.dirty
+            || PatientsForm.get('Gender')?.touched)">
+            Please provide Gender.
+          </mat-error>
+          <mat-error *ngIf="hasErr('Gender', 'required')">
+            this field is required
+          </mat-error>
+        </mat-form-field> -->
+<!-- [(ngModel)]="PatientsForm.value.Gender" -->
+<!-- [disabled]="!add" -->
+        <mat-form-field appearance="outline" class="col-6" >
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="Gender" name="Gender"  >
+            <mat-option *ngFor="let gender of GenderArr" [value]="gender">
+            {{ gender }}
+           </mat-option>
+          </mat-select>
+          <mat-error *ngIf="hasErr('Gender', 'required')">
+            this field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Blood Group</mat-label>
+          <i matSuffix class="fa-solid fa-syringe"></i>
+          <input matInput formControlName="BloodGroup" name="BloodGroup"
+          [value]="updatePatient?.BloodGroup">
+          <!-- <mat-error *ngIf="PatientsForm.get('BloodGroup')?.invalid
+            && (PatientsForm.get('BloodGroup')?.dirty
+            || PatientsForm.get('BloodGroup')?.touched)">
+            Please provide the Blood Group.
+          </mat-error> -->
+          <mat-error *ngIf="hasErr('BloodGroup', 'required')">
+            this field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Treatment</mat-label>
+          <i matSuffix class="fa-solid fa-pills"></i>
+          <input matInput formControlName="Treatment" name="Treatment"
+          [value]="updatePatient?.Treatment">
+          <!-- <mat-error *ngIf="PatientsForm.get('Treatment')?.invalid
+            && (PatientsForm.get('Treatment')?.dirty
+            || PatientsForm.get('Treatment')?.touched)">
+            Please provide the Treatment.
+          </mat-error> -->
+          <mat-error *ngIf="hasErr('Treatment', 'required')">
+            this field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Image</mat-label>
+          <i matSuffix class="fa-solid fa-image"></i>
+          <input matInput formControlName="Image" name="Image"
+          [value]="updatePatient?.Image" >
+          <!-- <mat-error *ngIf="PatientsForm.get('Image')?.invalid
+            && (PatientsForm.get('Image')?.dirty
+            || PatientsForm.get('Image')?.touched)">
+            Please provide a valid image URL.
+          </mat-error> -->
+          <mat-error *ngIf="hasErr('Image', 'required')">
+            this field is required
+          </mat-error>
+
+        </mat-form-field>
+      </div>
+
+      <!-- <div>
+        <label for="file">File:</label>
+        <input type="file" (change)="upload($event)" accept=".png,.jpg" />
+        <button (click)="uploadImage()">Upload Image</button>
+      </div>
+      <div class="form-group col-12">
+        <input type="file"
+        id="file"
+        #userPhoto
+        (change)="onFileSelected($event)"
+        name="image"
+        autocomplete="off"
+        />
+       </div>
+       <div *ngIf="fbb" class="list">
+  <img src="{{fbb}}" alt="" />
+</div> -->
+      <div class="row d-flex justify-content-between">
+        <div class="col-4 d-flex justify-content-center">
+          <button mat-raised-button color="primary" type="submit" 
+            [disabled]="PatientsForm.invalid" id="btnEdit">
+           {{add? "ADD" : 'EDIT'}}
+          </button>
+        </div>
+        <div class="col-4 d-flex justify-content-center">
+          <!-- <button mat-raised-button color="accent" type="reset">Reset</button> -->
+        
+         <button mat-raised-button type="reset" (click)="cancel()"
+        color="accent" *ngIf="add" id="btn1">Cancel</button>
+
+        <button mat-raised-button (click)="cancel()"
+        color="accent" *ngIf="!add" id="btn2">Cancel</button>
+      </div>
+      </div>
+    </form>
+  </div>
+</div>

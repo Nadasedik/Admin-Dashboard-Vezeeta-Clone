@@ -6,6 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  unicode-bidi: isolate;
 }
 
 html,
@@ -16,4 +17,9 @@ body {
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   position: relative;
+}
+
+.blue-snackbar {
+  background: #0070cd;
+  color: white;
 }

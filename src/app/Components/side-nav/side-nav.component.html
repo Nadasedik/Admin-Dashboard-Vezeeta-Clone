@@ -9,16 +9,28 @@
       <mat-expansion-panel-header>
         <mat-panel-title>
           <a mat-list-item>
+            <mat-icon>medication</mat-icon>Pharmacy
+          </a>
+          </mat-panel-title>
+          </mat-expansion-panel-header>
+          </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="pharmacy" (closed)="!pharmacy">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <a mat-list-item>
             <mat-icon>pharmacy</mat-icon>Pharmacy
+
           </a>
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div class="d-flex flex-column">
-        <a mat-list-item routerLink="/medicine/view" routerLinkActive="list-item-active">
-          <mat-icon>department</mat-icon>Medicine List
+        <a mat-list-item routerLink="/medicine/list" routerLinkActive="list-item-active">
+          <mat-icon>view_list</mat-icon>Medicine List
         </a>
         <a mat-list-item routerLink="/medicine/add" routerLinkActive="list-item-active">
-          <mat-icon>department</mat-icon>Add Medicine
+          <mat-icon>add</mat-icon>Add Medicine
         </a>
       </div>
     </mat-expansion-panel>
@@ -47,4 +59,26 @@
       </div>
     </mat-expansion-panel>
   </mat-accordion>
+
+  <mat-accordion>
+    <mat-expansion-panel (opened)="patients" (closed)="!patients" >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <a mat-list-item>
+            <mat-icon>patients</mat-icon>Patients
+          </a>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="d-flex flex-column">
+        <a mat-list-item routerLink="/patients" routerLinkActive="list-item-active">
+          <mat-icon>patients</mat-icon>All Patients
+        </a>
+        <a mat-list-item routerLink="/patients/add" routerLinkActive="list-item-active">
+          <mat-icon>patients</mat-icon>Add Patients
+        </a>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
 </mat-nav-list>

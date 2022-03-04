@@ -1,12 +1,12 @@
 .page {
   color: #032b52;
   padding: 0 1rem 1rem;
-  background: #e8f4f6;
+  background: whitesmoke;
 }
 
 .page-box {
   min-height: 100px;
-  background: #032b52;
+  background: #0070cd;
   color: #e8f4f6;
   margin: 0 -1rem;
   font-size: 35px;
@@ -16,7 +16,7 @@
   border-radius: 10px;
   margin-top: -1.5rem;
   padding: 10px;
-  background: #e8f4f6;
+  background: white;
   color: #032b52;
 }
 
