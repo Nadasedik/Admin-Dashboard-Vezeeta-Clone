@@ -110,7 +110,7 @@ import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
     
   ],
 
-    AngularFirestoreModule,],
+    // AngularFirestoreModule,],
 
     AngularFirestoreModule,
     AngularFireStorageModule
