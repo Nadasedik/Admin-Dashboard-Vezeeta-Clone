@@ -28,12 +28,16 @@ import { MatDialogModule } from '@angular/material/dialog';
 //firestore
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+<<<<<<< Updated upstream
 
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 //import {AngularFireStorageModule} from '@angular/fire/storage'
 
 
+=======
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+>>>>>>> Stashed changes
 import { environment } from 'src/environments/environment';
 
 import { AddEditDoctorComponent } from './Components/Doctors/Add-Edit-Doctor-component/add-edit-doctor/add-edit-doctor.component';
@@ -97,6 +101,7 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
     MatCardModule,
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firestoreConfig),
+<<<<<<< Updated upstream
 
     AngularFireStorageModule,
     //provideStorage(() => getStorage()),
@@ -104,6 +109,11 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
   ],
 
     AngularFirestoreModule,],
+=======
+    AngularFirestoreModule,
+    AngularFireStorageModule
+  ],
+>>>>>>> Stashed changes
 
 
   providers: [],

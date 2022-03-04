@@ -79,7 +79,7 @@
           <mat-label>Medicine Category | فئة الدواء</mat-label>
           <mat-select name="category" [(ngModel)]="medicineForm.value.category" formControlName="category">
             <mat-option>Select medicine category</mat-option>
-            <mat-option *ngFor="let category of categoryList" [value]='category.id'>
+            <mat-option *ngFor="let category of categoryList" [value]='category.name'>
               {{category.name}}
             </mat-option>
           </mat-select>
