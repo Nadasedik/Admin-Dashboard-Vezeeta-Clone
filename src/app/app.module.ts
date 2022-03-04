@@ -28,9 +28,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
+
 import { getStorage, provideStorage } from '@angular/fire/storage';
 //import {AngularFireStorageModule} from '@angular/fire/storage'
 
+
+
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 import { environment } from 'src/environments/environment';
 
@@ -99,11 +103,29 @@ import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
     MatCardModule,
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firestoreConfig),
+
+
+    AngularFireStorageModule,
+    //provideStorage(() => getStorage()),
+    
+  ],
+
+    AngularFirestoreModule,],
+
+    AngularFirestoreModule,
+    AngularFireStorageModule
+  ],
+
+
+
+  providers: [],
+
     AngularFireStorageModule
   ],
   providers: [
     {provide: BUCKET, useValue: 'my-bucket-name'} //to customise the storage bucket.
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
