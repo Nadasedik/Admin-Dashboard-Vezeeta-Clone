@@ -18,8 +18,7 @@ import { MatDividerModule } from '@angular/material/divider'
 import { MatListModule } from '@angular/material/list'
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSelectModule } from '@angular/material/select';
-import { MatCardModule } from '@angular/material/card';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -28,16 +27,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 //firestore
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-<<<<<<< Updated upstream
+
 
 import { getStorage, provideStorage } from '@angular/fire/storage';
-import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 //import {AngularFireStorageModule} from '@angular/fire/storage'
 
 
-=======
+
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
->>>>>>> Stashed changes
+
 import { environment } from 'src/environments/environment';
 
 import { AddEditDoctorComponent } from './Components/Doctors/Add-Edit-Doctor-component/add-edit-doctor/add-edit-doctor.component';
@@ -56,6 +54,10 @@ import { HomeComponent } from './Components/home/home.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { MedicineListComponent } from './Components/medicine-list/medicine-list.component';
 import { MedicineAddComponent } from './Components/medicine-add/medicine-add.component';
+
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,7 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
     MedicineAddComponent,
 
     PatientsComponent,
-    AddEditPatientsComponent
+    AddEditPatientsComponent,
 
     MedicineEditComponent
 
@@ -101,7 +103,7 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
     MatCardModule,
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firestoreConfig),
-<<<<<<< Updated upstream
+
 
     AngularFireStorageModule,
     //provideStorage(() => getStorage()),
@@ -109,14 +111,21 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
   ],
 
     AngularFirestoreModule,],
-=======
+
     AngularFirestoreModule,
     AngularFireStorageModule
   ],
->>>>>>> Stashed changes
+
 
 
   providers: [],
+
+    AngularFireStorageModule
+  ],
+  providers: [
+    {provide: BUCKET, useValue: 'my-bucket-name'} //to customise the storage bucket.
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
