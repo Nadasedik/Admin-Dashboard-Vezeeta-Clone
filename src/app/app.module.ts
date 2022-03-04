@@ -73,7 +73,7 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
     MedicineAddComponent,
 
     PatientsComponent,
-    AddEditPatientsComponent
+    AddEditPatientsComponent,
 
     MedicineEditComponent
 
@@ -103,7 +103,7 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
     
   ],
 
-    AngularFirestoreModule,],
+    // AngularFirestoreModule,],
 
 
   providers: [],

@@ -11,7 +11,6 @@ export class FilterComponent implements OnInit {
   @Input() title = '';
   @Input() route = '';
 
-  @Input() data:any ;
 
   @Input() titleAR = '';
   lang: string = '';
