@@ -60,4 +60,31 @@
     </mat-expansion-panel>
   </mat-accordion>
 
+
+
+  <!-- Doctors -->
+  <mat-accordion>
+    <mat-expansion-panel (opened)="doctor = true"
+                          (closed)="doctor = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <a mat-list-item>
+            <mat-icon>doctors</mat-icon> Doctors
+          </a>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="d-flex flex-column">
+        <a mat-list-item [routerLink]="['doctors/list']"
+        routerLinkActive="list-item-active"
+        class="text-decoration-none text-light my-2">
+        <mat-icon>doctor</mat-icon> Doctor List
+        </a>
+        <a  mat-list-item [routerLink]="['doctors/add']" routerLinkActive="list-item-active">
+          <mat-icon>doctor</mat-icon>   Add Doctors
+      </a>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+
 </mat-nav-list>

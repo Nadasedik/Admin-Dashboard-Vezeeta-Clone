@@ -9,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class SideNavComponent implements OnInit {
   pharmacy: boolean = false;
 
-  department: boolean = false
+  department: boolean = false;
+
+  doctor:boolean =false;
 
   constructor() { }
 

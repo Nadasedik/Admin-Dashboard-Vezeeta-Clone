@@ -40,6 +40,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { MedicineListComponent } from './Components/medicine-list/medicine-list.component';
 import { MedicineAddComponent } from './Components/medicine-add/medicine-add.component';
+import { DialogDoctorCompComponent } from './Components/common/dialog-doctor-comp/dialog-doctor-comp.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
     DashboardComponent,
     MedicineListComponent,
     MedicineAddComponent,
-    MedicineEditComponent
+    MedicineEditComponent,
+    DialogDoctorCompComponent
 
   ],
 

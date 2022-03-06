@@ -1,1 +1,141 @@
-<p>add-edit-doctor works!</p>
+<div class="container-fluid page">
+  <div class="page-box p-5">
+    <app-breadcrumb title="Add Doctors" subTitle="Doctors"></app-breadcrumb>
+  </div>
+  <div class="page-content shadow p-3 position-relative">
+    <div class="row">
+      <h4 id="formTitle" class="mx-2 my-4"> {{add? 'Add Doctor' : 'Edit Doctor'}}</h4>
+    </div>
+    <div class="row mx-3">
+
+      <form class="d-flex flex-column" [formGroup]="doctorForm"
+      (ngSubmit)=" add ? addDoct(): updateDoctor()">
+      <div class="row">
+        <mat-form-field appearance="fill" class="my-2 col-6">
+          <mat-label>Docotr Name In English</mat-label>
+          <input matInput formControlName="Name" name="Name"
+          [value]="doct?.Name">
+          <mat-error *ngIf="hasErr('Name', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('Name', 'minlength')">
+            this field should be 3 characters at least
+          </mat-error>
+          <mat-error *ngIf="hasErr('Name', 'pattern')">
+            this field must be in English Only
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="my-2 col-6">
+          <mat-label>Doctor Name In Arabic</mat-label>
+          <input matInput formControlName="nameInArabic" name="nameInArabic"
+          [value]="doct?.nameInArabic">
+          <mat-error *ngIf="hasErr('nameInArabic', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('nameInArabic', 'minlength')">
+            this field should be 3 characters at least
+          </mat-error>
+          <mat-error *ngIf="hasErr('nameInArabic', 'pattern')">
+            this field must be in Arabic Only
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="fill" class="my-2 col-6">
+          <mat-label>Title English </mat-label>
+          <input matInput formControlName="Title" [value]="doct?.Title">
+          <span matPrefix>Dr/</span>
+          <mat-error *ngIf="hasErr('Title', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('Title', 'minlength')">
+            this field should be 3 characters at least
+          </mat-error>
+          <mat-error *ngIf="hasErr('Title', 'pattern')">
+            this field must be in English Only
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="my-2 col-6">
+          <mat-label>Title In Arabic </mat-label>
+          <input matInput formControlName="titleInArabic" [value]="doct?.titleInArabic">
+          <span matSuffix>/د</span>
+          <mat-error *ngIf="hasErr('titleInArabic', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('titleInArabic', 'minlength')">
+            this field should be 3 characters at least
+          </mat-error>
+          <mat-error *ngIf="hasErr('titleInArabic', 'pattern')">
+            this field must be in Arabic Only
+          </mat-error>
+        </mat-form-field>
+
+        
+
+
+        <mat-form-field appearance="fill" class="my-2 col-6">
+          <mat-label>Department In English </mat-label>
+          <input matInput formControlName="Department" [value]="doct?.Department">
+          <mat-error *ngIf="hasErr('Department', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('Department', 'minlength')">
+            this field should be 3 characters at least
+          </mat-error>
+          <mat-error *ngIf="hasErr('Department', 'pattern')">
+            this field must be in English Only
+          </mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill" class="my-2 col-6">
+          <mat-label>Department Name In Arabic</mat-label>
+          <input matInput formControlName="departmentInArabic" name="departmentInArabic"
+          [value]="doct?.departmentInArabic">
+          <mat-error *ngIf="hasErr('departmentInArabic', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('departmentInArabic', 'minlength')">
+            this field should be 3 characters at least
+          </mat-error>
+          <mat-error *ngIf="hasErr('departmentInArabic', 'pattern')">
+            this field must be in Arabic Only
+          </mat-error>
+        </mat-form-field>
+
+
+        
+        <mat-form-field appearance="fill" class="my-2 col-6">
+          <mat-label>Session Price</mat-label>
+          <input matInput formControlName="Price" name="Price"
+          [value]="doct?.Price">
+          <mat-error *ngIf="hasErr('Price', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('Price', 'minlength')">
+            this field should be 3 characters at least
+          </mat-error>
+          <mat-error *ngIf="hasErr('Price', 'pattern')">
+            this field must be in Arabic Only
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+
+        <div class="btns my-4">
+          <button mat-raised-button color="primary"
+          class="mx-4" type="submit" [disabled]="doctorForm.invalid" id="btnEdit">
+          {{add? "ADD" : 'Update'}}
+        </button>
+
+        <button mat-stroked-button type="reset"
+        color="primary" *ngIf="add" id="btn1">Cancel</button>
+
+        <button mat-stroked-button (click)="cancel()"
+        color="primary" *ngIf="!add" id="btn2">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
