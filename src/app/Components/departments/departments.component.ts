@@ -1,4 +1,3 @@
-import { IDepartment } from './../../viewmodels/idepartment';
 import { AfterViewInit, Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -20,9 +19,9 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   displayedColumns: string[] = ['name', 'head',
 
     'date', 'numOfDocs', 'popularity', 'btns'];
-  dataSource: any;
+  // dataSource: any;
 
-  'date', 'numOfDocs', 'popularity', 'btns'];
+  // 'date', 'numOfDocs', 'popularity', 'btns'];
 
   // dataSource: any;
 

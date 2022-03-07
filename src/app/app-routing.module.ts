@@ -1,3 +1,6 @@
+import { SigninComponent } from './Components/signin/signin.component';
+import { SignupComponent } from './Components/signup/signup.component';
+import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
@@ -16,17 +19,27 @@ import { MedicineEditComponent } from './Components/medicine-edit/medicine-edit.
 
 
 const routes: Routes = [
-  { path: "", redirectTo: "home", pathMatch: "full" },
-  { path: "home", component: HomeComponent },
-  { path: "medicine/list", component: MedicineListComponent },
-  { path: "medicine/add", component: MedicineAddComponent },
-  { path: "medicine/edit/:id", component: MedicineEditComponent },
-  { path: "departments", component: DepartmentsComponent },
-  { path: "departments/add", component: AddUpdateDepartmentComponent },
-  { path: "departments/update/:id", component: AddUpdateDepartmentComponent },
-  { path: "patients", component: PatientsComponent},
-  {path: "patients/add", component: AddEditPatientsComponent},
-  {path:"patients/edit/:id", component: AddEditPatientsComponent},
+  { path: "", redirectTo: "/signup", pathMatch: "full" },
+  { path: "signup", component: SignupComponent },
+  { path: "signin", component: SigninComponent },
+  
+  {
+    path: "", component: MainLayoutComponent, children: [
+
+      { path: "home", component: HomeComponent },
+      { path: "medicine/list", component: MedicineListComponent },
+      { path: "medicine/add", component: MedicineAddComponent },
+      { path: "medicine/edit/:id", component: MedicineEditComponent },
+      { path: "departments", component: DepartmentsComponent },
+      { path: "departments/add", component: AddUpdateDepartmentComponent },
+      { path: "departments/update/:id", component: AddUpdateDepartmentComponent },
+      { path: "patients", component: PatientsComponent },
+      { path: "patients/add", component: AddEditPatientsComponent },
+      { path: "patients/edit/:id", component: AddEditPatientsComponent },
+
+    ]
+  },
+ 
 ];
 
 @NgModule({

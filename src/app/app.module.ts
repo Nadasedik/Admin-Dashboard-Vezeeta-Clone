@@ -33,9 +33,6 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 //import {AngularFireStorageModule} from '@angular/fire/storage'
 
 
-
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-
 import { environment } from 'src/environments/environment';
 
 import { AddEditDoctorComponent } from './Components/Doctors/Add-Edit-Doctor-component/add-edit-doctor/add-edit-doctor.component';
@@ -57,7 +54,10 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
-import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
+import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
+import { SignupComponent } from './Components/signup/signup.component';
+import { SigninComponent } from './Components/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +81,10 @@ import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
     PatientsComponent,
     AddEditPatientsComponent,
 
-    MedicineEditComponent
+    MedicineEditComponent,
+      MainLayoutComponent,
+      SignupComponent,
+      SigninComponent
 
 
   ],
@@ -103,27 +106,13 @@ import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
     MatCardModule,
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firestoreConfig),
-
-
     AngularFireStorageModule,
     //provideStorage(() => getStorage()),
-    
   ],
 
-    // AngularFirestoreModule,],
-
-    AngularFirestoreModule,
-    AngularFireStorageModule
-  ],
-
-
-
-  providers: [],
-
-    AngularFireStorageModule
-  ],
+  // AngularFirestoreModule,],
   providers: [
-    {provide: BUCKET, useValue: 'my-bucket-name'} //to customise the storage bucket.
+    { provide: BUCKET, useValue: 'my-bucket-name' } //to customise the storage bucket.
   ],
 
   bootstrap: [AppComponent]
