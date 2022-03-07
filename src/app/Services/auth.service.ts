@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -12,18 +13,20 @@ export class AuthService {
   constructor(
     private _auth: AngularFireAuth,
     private _firestore: AngularFirestore,
-    private _router: Router) {
+    private _router: Router,
+    private snackBar: MatSnackBar) {
   }
 
 
   signIn(email: string, pass: string) {
     this._auth.signInWithEmailAndPassword(email, pass)
       .then(value => {
-        console.log('Nice, it worked!');
+        this.snackBar.open('Nice, it worked!');
         this._router.navigateByUrl('/home');
       })
       .catch(err => {
-        console.log(err);
+        this.snackBar.open(err);
+  
       })
   }
 
@@ -33,16 +36,17 @@ export class AuthService {
         this.isLoggedIn = true;
         localStorage.setItem("user", JSON.stringify(res.user));
         this._router.navigateByUrl('/home');
+        this.snackBar.open('Nice, it worked!');
       })
       .catch(err => {
-        console.log(err);
+        this.snackBar.open(err);
       })
   }
 
-  // logout() {
-  //   this._auth.signOut()
-  //   localStorage.removeItem('user');
-  // }
+  logout() {
+    this._auth.signOut()
+    localStorage.removeItem('Admin');
+  }
 
   addUser(data: any) {
     this._firestore.collection('Admin').doc().set({

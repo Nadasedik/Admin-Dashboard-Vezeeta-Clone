@@ -2,7 +2,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from './../../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { confirmPassValidator } from '../validators/confirmPass';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -15,7 +15,8 @@ export class SignupComponent implements OnInit {
   isSigned = false;
   constructor(
     private _formBuilder: FormBuilder,
-    private authSer: AuthService) {
+    private authSer: AuthService,
+    private snackBar: MatSnackBar) {
     this.signupForm = this._formBuilder.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
