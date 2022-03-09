@@ -18,22 +18,20 @@ import { MatDividerModule } from '@angular/material/divider'
 import { MatListModule } from '@angular/material/list'
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSelectModule } from '@angular/material/select';
-import { MatCardModule } from '@angular/material/card';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 //firestore
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
+
 import { getStorage, provideStorage } from '@angular/fire/storage';
-import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 //import {AngularFireStorageModule} from '@angular/fire/storage'
+
 import { environment } from 'src/environments/environment';
-import { AddEditDoctorComponent } from './Components/Doctors/Add-Edit-Doctor-component/add-edit-doctor/add-edit-doctor.component';
-import { ViewAllDoctorsComponent } from './Components/Doctors/viewAllDoctors/view-all-doctors/view-all-doctors.component';
 import { AddUpdateDepartmentComponent } from './Components/add-update-department/add-update-department.component';
 import { AllDepartmentsComponent } from './Components/all-departments/all-departments.component';
-import { BreadcrumbComponent } from './Components/common/breadcrumb/breadcrumb.component';
 import { DialogComponent } from './Components/common/dialog/dialog.component';
 import { FilterComponent } from './Components/common/filter/filter.component';
 import { DepartmentsComponent } from './Components/departments/departments.component';
@@ -45,14 +43,15 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { MedicineListComponent } from './Components/medicine-list/medicine-list.component';
 import { MedicineAddComponent } from './Components/medicine-add/medicine-add.component';
 
+import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
+import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
+
 @NgModule({
   declarations: [
     AppComponent,
-    AddEditDoctorComponent,
-    ViewAllDoctorsComponent,
     AddUpdateDepartmentComponent,
     AllDepartmentsComponent,
-    BreadcrumbComponent,
     DialogComponent,
     FilterComponent,
     DepartmentsComponent,
@@ -86,10 +85,14 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firestoreConfig),
     AngularFireStorageModule,
+    AngularFireStorageModule,
+    //provideStorage(() => getStorage()),
   ],
 
+  providers: [
+    {provide: BUCKET, useValue: 'my-bucket-name'} //to customise the storage bucket.
+  ],
 
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
