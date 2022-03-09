@@ -1,3 +1,4 @@
+import { AuthGuard } from './Components/guards/auth.guard';
 import { SigninComponent } from './Components/signin/signin.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
@@ -22,24 +23,25 @@ const routes: Routes = [
   { path: "", redirectTo: "/signup", pathMatch: "full" },
   { path: "signup", component: SignupComponent },
   { path: "signin", component: SigninComponent },
-  
+
   {
     path: "", component: MainLayoutComponent, children: [
 
-      { path: "home", component: HomeComponent },
-      { path: "medicine/list", component: MedicineListComponent },
-      { path: "medicine/add", component: MedicineAddComponent },
-      { path: "medicine/edit/:id", component: MedicineEditComponent },
-      { path: "departments", component: DepartmentsComponent },
-      { path: "departments/add", component: AddUpdateDepartmentComponent },
-      { path: "departments/update/:id", component: AddUpdateDepartmentComponent },
-      { path: "patients", component: PatientsComponent },
-      { path: "patients/add", component: AddEditPatientsComponent },
-      { path: "patients/edit/:id", component: AddEditPatientsComponent },
+      { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
+      { path: "dashboard", component: DashboardComponent},
+      { path: "medicine/list", component: MedicineListComponent, canActivate: [AuthGuard] },
+      { path: "medicine/add", component: MedicineAddComponent, canActivate: [AuthGuard] },
+      { path: "medicine/edit/:id", component: MedicineEditComponent, canActivate: [AuthGuard] },
+      { path: "departments", component: DepartmentsComponent, canActivate: [AuthGuard] },
+      { path: "departments/add", component: AddUpdateDepartmentComponent, canActivate: [AuthGuard] },
+      { path: "departments/update/:id", component: AddUpdateDepartmentComponent, canActivate: [AuthGuard] },
+      { path: "patients", component: PatientsComponent, canActivate: [AuthGuard] },
+      { path: "patients/add", component: AddEditPatientsComponent, canActivate: [AuthGuard] },
+      { path: "patients/edit/:id", component: AddEditPatientsComponent, canActivate: [AuthGuard] },
 
     ]
   },
- 
+
 ];
 
 @NgModule({

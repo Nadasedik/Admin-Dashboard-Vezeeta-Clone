@@ -37,7 +37,7 @@ export class SigninComponent implements OnInit {
 
   onSignin(formData: any) {
     if (formData.valid) {
-      console.log(formData.value);
+      // console.log(formData.value);
       this._authSer.signIn(
         formData.value.email,
         formData.value.pass
