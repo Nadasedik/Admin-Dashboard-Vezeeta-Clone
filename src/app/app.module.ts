@@ -22,27 +22,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-
-
-
 //firestore
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-<<<<<<< Updated upstream
-
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 //import {AngularFireStorageModule} from '@angular/fire/storage'
-
-
-=======
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
->>>>>>> Stashed changes
 import { environment } from 'src/environments/environment';
-
 import { AddEditDoctorComponent } from './Components/Doctors/Add-Edit-Doctor-component/add-edit-doctor/add-edit-doctor.component';
 import { ViewAllDoctorsComponent } from './Components/Doctors/viewAllDoctors/view-all-doctors/view-all-doctors.component';
-
 import { AddUpdateDepartmentComponent } from './Components/add-update-department/add-update-department.component';
 import { AllDepartmentsComponent } from './Components/all-departments/all-departments.component';
 import { BreadcrumbComponent } from './Components/common/breadcrumb/breadcrumb.component';
@@ -75,13 +63,9 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
     DashboardComponent,
     MedicineListComponent,
     MedicineAddComponent,
-
     PatientsComponent,
-    AddEditPatientsComponent
-
+    AddEditPatientsComponent,
     MedicineEditComponent
-
-
   ],
 
   imports: [
@@ -101,19 +85,8 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
     MatCardModule,
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firestoreConfig),
-<<<<<<< Updated upstream
-
     AngularFireStorageModule,
-    //provideStorage(() => getStorage()),
-    
   ],
-
-    AngularFirestoreModule,],
-=======
-    AngularFirestoreModule,
-    AngularFireStorageModule
-  ],
->>>>>>> Stashed changes
 
 
   providers: [],
