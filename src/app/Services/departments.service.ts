@@ -12,7 +12,7 @@ export class DepartmentsService {
               private _router: Router) {
   }
 
-  addDept(dept:IDepartment) {
+  addDept(dept:IDepartment, path?:string) {
     this._firestore.collection('Departments2').doc().set({
       "name": dept.name,
       "nameAR": dept.nameAR,
@@ -22,9 +22,8 @@ export class DepartmentsService {
       "common": dept.common,
       "numOfDocs": 0,
       "viewInSlider": dept.viewInSlider ? dept.viewInSlider : false,
-      "sliderPic": dept.sliderPic ? dept.sliderPic : "",
-      "viewInModal": dept.viewInModal ? dept.viewInModal : false,
-      "modalIcon": dept.modalIcon ? dept.modalIcon : "",
+      "sliderPic": path ? path : "https://firebasestorage.googleapis.com/v0/b/vezeeta-website-db.appspot.com/o/icons2%2Fdefault-product.jpg?alt=media&token=09ea9c03-df62-4fbe-8967-ee5331f90cea",
+
     })
     .then(res => {
       console.log(res);

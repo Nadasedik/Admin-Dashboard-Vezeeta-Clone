@@ -7,7 +7,9 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogComponent } from './../common/dialog/dialog.component';
 import { LangService } from 'src/app/Services/lang.service';
+
 // import { IDepartment } from 'src/app/viewmodels/idepartment';
+
 
 @Component({
   selector: 'app-departments',
@@ -17,12 +19,14 @@ import { LangService } from 'src/app/Services/lang.service';
 export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   panelOpenState: boolean = false;
   allDept: IDepartment[] = [];
-  displayedColumns: string[] = ['name', 'head',
+  displayedColumns: string[] = ['numOfDocs','name', 'head',
 
-    'date', 'numOfDocs', 'popularity', 'btns'];
+    'date',  'popularity', 'btns'];
   dataSource: any;
 
+
   // 'date', 'numOfDocs', 'popularity', 'btns'];
+
 
   // dataSource: any;
 
@@ -43,8 +47,8 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   constructor(private deptSet: DepartmentsService,
     private _router: Router, private _dialog: MatDialog,
     private langService: LangService) {
-      this.dataSource = new MatTableDataSource<IDepartment>(this.allDept)
-    }
+    this.dataSource = new MatTableDataSource<IDepartment>(this.allDept)
+  }
 
   ngOnInit(): void {
     this.getAllDepts();
@@ -77,7 +81,7 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
       console.log('from ts', data);
     })
   }
-  openEditForm(element: any,id: string) {
+  openEditForm(element: any, id: string) {
     // console.log('element', element.preventDefault());
 
     console.log('id', id);

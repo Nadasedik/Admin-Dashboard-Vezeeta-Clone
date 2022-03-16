@@ -21,9 +21,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-
-
-
 //firestore
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -33,17 +30,9 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 //import {AngularFireStorageModule} from '@angular/fire/storage'
 
 
-
-
-
 import { environment } from 'src/environments/environment';
-
-import { AddEditDoctorComponent } from './Components/Doctors/Add-Edit-Doctor-component/add-edit-doctor/add-edit-doctor.component';
-import { ViewAllDoctorsComponent } from './Components/Doctors/viewAllDoctors/view-all-doctors/view-all-doctors.component';
-
 import { AddUpdateDepartmentComponent } from './Components/add-update-department/add-update-department.component';
 import { AllDepartmentsComponent } from './Components/all-departments/all-departments.component';
-import { BreadcrumbComponent } from './Components/common/breadcrumb/breadcrumb.component';
 import { DialogComponent } from './Components/common/dialog/dialog.component';
 import { FilterComponent } from './Components/common/filter/filter.component';
 import { DepartmentsComponent } from './Components/departments/departments.component';
@@ -59,15 +48,14 @@ import { DialogDoctorCompComponent } from './Components/common/dialog-doctor-com
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
+import { provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp } from 'firebase/app';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddEditDoctorComponent,
-    ViewAllDoctorsComponent,
     AddUpdateDepartmentComponent,
     AllDepartmentsComponent,
-    BreadcrumbComponent,
     DialogComponent,
     FilterComponent,
     DepartmentsComponent,
@@ -79,14 +67,16 @@ import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
     MedicineListComponent,
     MedicineAddComponent,
 
+
     MedicineEditComponent,
     DialogDoctorCompComponent,
+
 
 
     PatientsComponent,
     AddEditPatientsComponent,
 
-    MedicineEditComponent
+
 
 
 
@@ -109,9 +99,8 @@ import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
     MatCardModule,
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firestoreConfig),
-
-
     AngularFireStorageModule,
+
     //provideStorage(() => getStorage()),
     
 
@@ -131,6 +120,16 @@ import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
   providers: [
     AngularFireStorageModule,
     {provide: BUCKET, useValue: 'my-bucket-name'} //to customise the storage bucket.
+
+    provideStorage(() => getStorage()),
+    provideFirebaseApp(() => initializeApp(environment.firestoreConfig)),
+    AngularFirestoreModule,
+
+    //provideStorage(() => getStorage()),
+  ],
+  providers: [
+    {provide: BUCKET, useValue: 'gs://vezeeta-website-db.appspot.com'} //to customise the storage bucket.
+
   ],
 
   bootstrap: [AppComponent]
