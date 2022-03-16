@@ -21,9 +21,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-
-
-
 //firestore
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -34,13 +31,8 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 
 
 import { environment } from 'src/environments/environment';
-
-import { AddEditDoctorComponent } from './Components/Doctors/Add-Edit-Doctor-component/add-edit-doctor/add-edit-doctor.component';
-import { ViewAllDoctorsComponent } from './Components/Doctors/viewAllDoctors/view-all-doctors/view-all-doctors.component';
-
 import { AddUpdateDepartmentComponent } from './Components/add-update-department/add-update-department.component';
 import { AllDepartmentsComponent } from './Components/all-departments/all-departments.component';
-import { BreadcrumbComponent } from './Components/common/breadcrumb/breadcrumb.component';
 import { DialogComponent } from './Components/common/dialog/dialog.component';
 import { FilterComponent } from './Components/common/filter/filter.component';
 import { DepartmentsComponent } from './Components/departments/departments.component';
@@ -51,22 +43,26 @@ import { HomeComponent } from './Components/home/home.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { MedicineListComponent } from './Components/medicine-list/medicine-list.component';
 import { MedicineAddComponent } from './Components/medicine-add/medicine-add.component';
+import { DialogDoctorCompComponent } from './Components/common/dialog-doctor-comp/dialog-doctor-comp.component';
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
 import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { SigninComponent } from './Components/signin/signin.component';
 
+import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
+import { provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp } from 'firebase/app';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    AddEditDoctorComponent,
-    ViewAllDoctorsComponent,
     AddUpdateDepartmentComponent,
     AllDepartmentsComponent,
-    BreadcrumbComponent,
     DialogComponent,
     FilterComponent,
     DepartmentsComponent,
@@ -78,13 +74,21 @@ import { SigninComponent } from './Components/signin/signin.component';
     MedicineListComponent,
     MedicineAddComponent,
 
+
+    MedicineEditComponent,
+    DialogDoctorCompComponent,
+
+
+
     PatientsComponent,
     AddEditPatientsComponent,
+
 
     MedicineEditComponent,
       MainLayoutComponent,
       SignupComponent,
       SigninComponent
+
 
 
   ],
@@ -107,12 +111,44 @@ import { SigninComponent } from './Components/signin/signin.component';
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firestoreConfig),
     AngularFireStorageModule,
+
     //provideStorage(() => getStorage()),
+
   ],
 
   // AngularFirestoreModule,],
   providers: [
     { provide: BUCKET, useValue: 'my-bucket-name' } //to customise the storage bucket.
+
+    
+
+
+    // AngularFirestoreModule,],
+
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+  ],
+
+
+
+  // providers: [],
+
+  //   AngularFireStorageModule,
+  // ],
+  providers: [
+    AngularFireStorageModule,
+    {provide: BUCKET, useValue: 'my-bucket-name'} //to customise the storage bucket.
+
+    provideStorage(() => getStorage()),
+    provideFirebaseApp(() => initializeApp(environment.firestoreConfig)),
+    AngularFirestoreModule,
+
+    //provideStorage(() => getStorage()),
+  ],
+  providers: [
+    {provide: BUCKET, useValue: 'gs://vezeeta-website-db.appspot.com'} //to customise the storage bucket.
+
+
   ],
 
   bootstrap: [AppComponent]

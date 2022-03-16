@@ -17,6 +17,16 @@
       </div>
       <div>
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!-- image Column -->
+          <ng-container matColumnDef="numOfDocs">
+            <th mat-header-cell *matHeaderCellDef> img </th>
+            <td mat-cell *matCellDef="let element">
+              <img src= {{element.sliderPic}} alt=""
+              width="60" height="60" style="border-radius: .5em; margin: .2em;">
+            </td>
+          </ng-container>
+
           <!-- Name Column -->
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Department Name. </th>
@@ -27,12 +37,6 @@
           <ng-container matColumnDef="head">
             <th mat-header-cell *matHeaderCellDef> Department Head </th>
             <td mat-cell *matCellDef="let element"> {{element.head}} </td>
-          </ng-container>
-
-          <!-- numOfDocs Column -->
-          <ng-container matColumnDef="numOfDocs">
-            <th mat-header-cell *matHeaderCellDef> #ofDoctors </th>
-            <td mat-cell *matCellDef="let element"> {{element.numOfDocs}} </td>
           </ng-container>
 
           <!-- date Column -->

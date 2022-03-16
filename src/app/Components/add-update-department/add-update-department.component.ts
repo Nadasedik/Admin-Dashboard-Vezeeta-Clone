@@ -5,7 +5,9 @@ import { IDepartment } from '../../viewmodels/idepartment';
 import { DepartmentsService } from '../../Services/departments.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize, Observable } from 'rxjs';
+import { finalize, from, Observable, switchMap } from 'rxjs';
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import { Storage } from '@angular/fire/storage';
 
 
 @Component({
@@ -21,10 +23,15 @@ export class AddUpdateDepartmentComponent implements OnInit {
   dpt: any;
   dptID!: string;
   // dpt: IDepartment = {} as IDepartment;
+  //pic upload
+  imgSrc: string = '';
+  selectedImg!: File;
+  currentImg!: string;
   constructor(private _builder: FormBuilder,
     private dptSer: DepartmentsService,
     private _activatedRoute: ActivatedRoute, private _router: Router,
-    private _snackbar: MatSnackBar, private _storage:AngularFireStorage) { }
+    private _snackbar: MatSnackBar, private _storage:AngularFireStorage,
+    private _storage2: Storage) { }
 
   ngOnInit(): void {
     this.deptForm = this._builder.group({
@@ -41,8 +48,6 @@ export class AddUpdateDepartmentComponent implements OnInit {
       //dynamic validation
       viewInSlider: [false],
       sliderPic: [''],
-      viewInModal: [false],
-      modalIcon: [''],
     });
 
     //l routes
@@ -64,9 +69,6 @@ export class AddUpdateDepartmentComponent implements OnInit {
           // this.deptForm.controls['common'].setValue(this.dpt.common);
           this.deptForm.controls['viewInSlider'].setValue(this.dpt.viewInSlider);
           this.deptForm.controls['sliderPic'].setValue(this.dpt.sliderPic);
-          this.deptForm.controls['viewInModal'].setValue(this.dpt.viewInModal);
-          this.deptForm.controls['modalIcon'].setValue(this.dpt.modalIcon);
-            console.log('from ts', data);
         })
         .catch(err => {
           console.log(err);
@@ -74,8 +76,6 @@ export class AddUpdateDepartmentComponent implements OnInit {
       }
     })
 
-    //update
-    // console.log('from ts', this.deptSet.updateDept('KSf2lO5njfjTTJEsHIlw'));
   }
 
   //props
@@ -87,14 +87,34 @@ export class AddUpdateDepartmentComponent implements OnInit {
     return this.deptForm.controls['viewInModal'].value
   }
 
+  preview(event: any) {
+    this.selectedImg = event.target.files[0];
+  }
+
   addDept(): void {
-    let data = this.deptForm.value;
-    let common = this.deptForm.value.common == 'true';
-    this.dptSer.addDept({...data, common});
-    //open snackbar
-    this._snackbar.open('Department is added successfully!', 'close', {
-      duration: 3000
-    });
+    if(!this.selectedImg) {
+      let data = this.deptForm.value;
+        let common = this.deptForm.value.common == 'true';
+        this.dptSer.addDept({...data, common});
+        //open snackbar
+        this._snackbar.open('Department is added successfully!', 'close', {
+          duration: 3000
+        });
+    } else {
+    this._storage.ref(`/icons2/${this.selectedImg.name}`)
+    .put(this.selectedImg)
+    .snapshotChanges().subscribe(d => {
+      d?.ref.getDownloadURL().then(ref => {
+        let data = this.deptForm.value;
+        let common = this.deptForm.value.common == 'true';
+        this.dptSer.addDept({...data, common}, ref);
+        //open snackbar
+        this._snackbar.open('Department is added successfully!', 'close', {
+          duration: 3000
+        });
+      })
+    })
+  }
   }
 
   updateDept(): void {
@@ -132,28 +152,6 @@ export class AddUpdateDepartmentComponent implements OnInit {
     }
     this.deptForm.get('sliderPic')?.updateValueAndValidity();
   }
-  updateModalValidator() {
-    if(this.ViewInModal) {
-      this.deptForm.get('modalIcon')?.addValidators([Validators.required]);
-    } else {
-      this.deptForm.get('modalIcon')?.clearValidators();
-    }
-    this.deptForm.get('modalIcon')?.updateValueAndValidity();
-  }
 
-  //storage
-  uploadPercent?: Observable<number | undefined>;
-  downloadURL?: Observable<string>;
-  uploadFile(event: any) {
-    const file = event.target.files[0];
-    const filePath = 'matInput formControlName="sliderPic" name="sliderPic"';
-    const fileRef = this._storage.ref(filePath);
-    const task = this._storage.upload(filePath, file);
-    // observe percentage changes
-    this.uploadPercent = task.percentageChanges();
-    // get notified when the download URL is available
-    task.snapshotChanges().pipe(
-        finalize(() => this.downloadURL = fileRef.getDownloadURL() )
-    ).subscribe()
-  }
+
 }
