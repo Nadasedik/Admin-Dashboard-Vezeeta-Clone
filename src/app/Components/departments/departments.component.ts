@@ -40,8 +40,8 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   constructor(private deptSet: DepartmentsService,
     private _router: Router, private _dialog: MatDialog,
     private langService: LangService) {
-      this.dataSource = new MatTableDataSource<IDepartment>(this.allDept)
-    }
+    this.dataSource = new MatTableDataSource<IDepartment>(this.allDept)
+  }
 
   ngOnInit(): void {
     this.getAllDepts();
@@ -74,7 +74,7 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
       console.log('from ts', data);
     })
   }
-  openEditForm(element: any,id: string) {
+  openEditForm(element: any, id: string) {
     // console.log('element', element.preventDefault());
 
     console.log('id', id);
