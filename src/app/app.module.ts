@@ -29,6 +29,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 //import {AngularFireStorageModule} from '@angular/fire/storage'
 
+
 import { environment } from 'src/environments/environment';
 import { AddUpdateDepartmentComponent } from './Components/add-update-department/add-update-department.component';
 import { AllDepartmentsComponent } from './Components/all-departments/all-departments.component';
@@ -42,6 +43,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { MedicineListComponent } from './Components/medicine-list/medicine-list.component';
 import { MedicineAddComponent } from './Components/medicine-add/medicine-add.component';
+import { DialogDoctorCompComponent } from './Components/common/dialog-doctor-comp/dialog-doctor-comp.component';
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
@@ -64,9 +66,20 @@ import { initializeApp } from 'firebase/app';
     DashboardComponent,
     MedicineListComponent,
     MedicineAddComponent,
+
+
+    MedicineEditComponent,
+    DialogDoctorCompComponent,
+
+
+
     PatientsComponent,
     AddEditPatientsComponent,
-    MedicineEditComponent
+
+
+
+
+
   ],
 
   imports: [
@@ -87,6 +100,27 @@ import { initializeApp } from 'firebase/app';
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firestoreConfig),
     AngularFireStorageModule,
+
+    //provideStorage(() => getStorage()),
+    
+
+
+    // AngularFirestoreModule,],
+
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+  ],
+
+
+
+  // providers: [],
+
+  //   AngularFireStorageModule,
+  // ],
+  providers: [
+    AngularFireStorageModule,
+    {provide: BUCKET, useValue: 'my-bucket-name'} //to customise the storage bucket.
+
     provideStorage(() => getStorage()),
     provideFirebaseApp(() => initializeApp(environment.firestoreConfig)),
     AngularFirestoreModule,
@@ -95,6 +129,7 @@ import { initializeApp } from 'firebase/app';
   ],
   providers: [
     {provide: BUCKET, useValue: 'gs://vezeeta-website-db.appspot.com'} //to customise the storage bucket.
+
   ],
 
   bootstrap: [AppComponent]

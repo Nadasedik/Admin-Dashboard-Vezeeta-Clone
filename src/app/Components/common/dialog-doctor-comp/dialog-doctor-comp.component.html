@@ -1,0 +1,20 @@
+
+<div > <!--*ngIf="lang=='EN'"-->
+    <h1 mat-dialog-title class="text-danger text-center" >Warning!</h1>
+  <div mat-dialog-content>
+    <p>The Docotr will be deleted permanently</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-stroked-button
+    color="primary" (click)="Cancel()" id="btn1">
+      Cancel
+    </button>
+    <button mat-raised-button color="primary" cdkFocusInitial
+    class="mx-4" (click)="DeleteDoctor()" [mat-dialog-close]="data.dpts" id="btnEdit">
+            Delete
+    </button>
+  </div>
+  </div>
+  
+
+  

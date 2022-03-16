@@ -8,6 +8,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DialogComponent } from './../common/dialog/dialog.component';
 import { LangService } from 'src/app/Services/lang.service';
 
+// import { IDepartment } from 'src/app/viewmodels/idepartment';
+
+
 @Component({
   selector: 'app-departments',
   templateUrl: './departments.component.html',
@@ -20,6 +23,10 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
 
     'date',  'popularity', 'btns'];
   dataSource: any;
+
+
+  // 'date', 'numOfDocs', 'popularity', 'btns'];
+
 
   // dataSource: any;
 
