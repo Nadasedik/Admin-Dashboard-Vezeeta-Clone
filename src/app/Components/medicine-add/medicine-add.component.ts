@@ -27,7 +27,6 @@ export class MedicineAddComponent implements OnInit {
     private fb: FormBuilder,
     private snackbar: MatSnackBar,
     private pharmacyService: PharmacyService,
-    private router: Router,
   ) { }
 
   config: MatSnackBarConfig = {
@@ -47,7 +46,7 @@ export class MedicineAddComponent implements OnInit {
       molarity: ['', Validators.required],
       size: ['', Validators.required],
       price: ['', Validators.required],
-      url: ['https://fakeimg.pl/300/', Validators.required],
+      url: ['https://altibbi.com//img/drug.png', Validators.required],
     })
   }
 
@@ -55,8 +54,8 @@ export class MedicineAddComponent implements OnInit {
     return this.medicineForm.controls[controlName].hasError(errorName);
   }
 
-  AddMedicine(medicineForm: Medicine): void {
-    this.pharmacyService.create(this.medicineForm.value).then(() => {
+  AddMedicine(id: any, medicineForm: Medicine): void {
+    this.pharmacyService.create(id, this.medicineForm.value).then(() => {
       console.log('Created new item successfully!');
     })
       ;

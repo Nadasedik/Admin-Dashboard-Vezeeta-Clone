@@ -1,3 +1,4 @@
+import { IDepartment } from './../../viewmodels/idepartment';
 import { AfterViewInit, Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -6,7 +7,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogComponent } from './../common/dialog/dialog.component';
 import { LangService } from 'src/app/Services/lang.service';
-import { IDepartment } from 'src/app/viewmodels/idepartment';
+// import { IDepartment } from 'src/app/viewmodels/idepartment';
 
 @Component({
   selector: 'app-departments',
@@ -17,9 +18,14 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   panelOpenState: boolean = false;
   allDept: IDepartment[] = [];
   displayedColumns: string[] = ['name', 'head',
-  'date', 'numOfDocs', 'popularity', 'btns'];
+
+    'date', 'numOfDocs', 'popularity', 'btns'];
+  dataSource: any;
+
+  // 'date', 'numOfDocs', 'popularity', 'btns'];
 
   // dataSource: any;
+
   //da ll paginator
   //da ll delete 3l4an yreload da
   sentDpts: any[] = [];
@@ -29,7 +35,7 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   lang = '';
   //for filter
   dpts!: IDepartment[];
-  dataSource = new MatTableDataSource(this.dpts);
+  // dataSource = new MatTableDataSource(this.dpts);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;

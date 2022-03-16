@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IDepartment } from '../../viewmodels/idepartment';
 import { DepartmentsService } from '../../Services/departments.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize, Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-add-update-department',
@@ -21,7 +24,7 @@ export class AddUpdateDepartmentComponent implements OnInit {
   constructor(private _builder: FormBuilder,
     private dptSer: DepartmentsService,
     private _activatedRoute: ActivatedRoute, private _router: Router,
-    private _snackbar: MatSnackBar) { }
+    private _snackbar: MatSnackBar, private _storage:AngularFireStorage) { }
 
   ngOnInit(): void {
     this.deptForm = this._builder.group({
@@ -52,7 +55,7 @@ export class AddUpdateDepartmentComponent implements OnInit {
         this.add = false;
         this.dptSer.getDocByID(id).then(data => {
           this.dpt = data;
-          //set values to input
+          //set values to input to enable update btn without any changes
           this.deptForm.controls['name'].setValue(this.dpt.name);
           this.deptForm.controls['nameAR'].setValue(this.dpt.nameAR);
           this.deptForm.controls['head'].setValue(this.dpt.head);
@@ -89,7 +92,9 @@ export class AddUpdateDepartmentComponent implements OnInit {
     let common = this.deptForm.value.common == 'true';
     this.dptSer.addDept({...data, common});
     //open snackbar
-    this._snackbar.open('Department is added successfully!', 'close');
+    this._snackbar.open('Department is added successfully!', 'close', {
+      duration: 3000
+    });
   }
 
   updateDept(): void {
@@ -97,7 +102,9 @@ export class AddUpdateDepartmentComponent implements OnInit {
     let common = this.deptForm.value.common == 'true';
     this.dptSer.updateDept(this.dptID, {...data, common});
      //open snackbar
-    this._snackbar.open('Department is updated successfully!', 'close');
+    this._snackbar.open('Department is updated successfully!', 'close', {
+      duration: 3000
+    });
   }
 
   //cancel button
@@ -132,5 +139,21 @@ export class AddUpdateDepartmentComponent implements OnInit {
       this.deptForm.get('modalIcon')?.clearValidators();
     }
     this.deptForm.get('modalIcon')?.updateValueAndValidity();
+  }
+
+  //storage
+  uploadPercent?: Observable<number | undefined>;
+  downloadURL?: Observable<string>;
+  uploadFile(event: any) {
+    const file = event.target.files[0];
+    const filePath = 'matInput formControlName="sliderPic" name="sliderPic"';
+    const fileRef = this._storage.ref(filePath);
+    const task = this._storage.upload(filePath, file);
+    // observe percentage changes
+    this.uploadPercent = task.percentageChanges();
+    // get notified when the download URL is available
+    task.snapshotChanges().pipe(
+        finalize(() => this.downloadURL = fileRef.getDownloadURL() )
+    ).subscribe()
   }
 }

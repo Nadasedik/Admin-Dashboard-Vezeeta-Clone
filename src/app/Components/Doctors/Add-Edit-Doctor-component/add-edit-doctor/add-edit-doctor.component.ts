@@ -31,7 +31,15 @@ export class AddEditDoctorComponent implements OnInit {
       Department:['',[Validators.required, Validators.minLength(4),Validators.pattern('^[a-zA-Z ]+$')]],
       departmentInArabic:['',[Validators.required, Validators.minLength(3),Validators.pattern('^[\u0621-\u064A\u0660-\u0669 ]+$')]],
       Price:['',[Validators.required, Validators.minLength(3)]],
-      
+      Information:['',[Validators.pattern('^[a-zA-Z ]+$')]],
+      InformationInArabic:['',[Validators.pattern('^[\u0621-\u064A\u0660-\u0669 ]+$')]],
+      nationalID:['',[Validators.required, Validators.maxLength(18)]],
+      city:['',[Validators.required, Validators.minLength(4),Validators.pattern('^[a-zA-Z ]+$')]],
+      area:['',[Validators.required, Validators.minLength(4),Validators.pattern('^[a-zA-Z ]+$')]],
+      areaAR:['',[Validators.required, Validators.minLength(4),Validators.pattern('^[\u0621-\u064A\u0660-\u0669 ]+$')]],
+      address:['',[Validators.required]],
+      dpt:[''],
+      dptAR:['']
     })
 
 
@@ -44,14 +52,25 @@ export class AddEditDoctorComponent implements OnInit {
         this.add=false;
         this.doctorsService.getSpecificDoctorByID(this.doctorID).then(data=>{
           this.doct=data;
-          this.doctorForm.controls["name"].setValue(this.doct.Name);
-          this.doctorForm.controls["nameInArabic"].setValue(this.doct.Name);
-          this.doctorForm.controls["title"].setValue(this.doct.Name);
-          this.doctorForm.controls["titleInArabic"].setValue(this.doct.Name);
-          this.doctorForm.controls["gender"].setValue(this.doct.Name);
-          this.doctorForm.controls["genderInArabic"].setValue(this.doct.Name);
-          this.doctorForm.controls["department"].setValue(this.doct.Name);
-          this.doctorForm.controls["departmentInArabic"].setValue(this.doct.Name);
+          this.doctorForm.controls["Name"].setValue(this.doct.Name);
+          this.doctorForm.controls["nameInArabic"].setValue(this.doct.nameInArabic);
+          this.doctorForm.controls["Title"].setValue(this.doct.Title);
+          this.doctorForm.controls["titleInArabic"].setValue(this.doct.titleInArabic);
+          
+        
+          this.doctorForm.controls["Department"].setValue(this.doct.Department);
+          this.doctorForm.controls["departmentInArabic"].setValue(this.doct.departmentInArabic);
+          this.doctorForm.controls["Information"].setValue(this.doct.Information);
+          this.doctorForm.controls["InformationInArabic"].setValue(this.doct.InformationInArabic);
+          this.doctorForm.controls["Price"].setValue(this.doct.Price);
+          this.doctorForm.controls["nationalID"].setValue(this.doct.nationalID);
+          this.doctorForm.controls["city"].setValue(this.doct.city);
+          this.doctorForm.controls["area"].setValue(this.doct.area);
+          this.doctorForm.controls["areaAR"].setValue(this.doct.areaAR);
+          this.doctorForm.controls["dpt"].setValue(this.doct.dpt);
+          this.doctorForm.controls["dptAR"].setValue(this.doct.dptAR);
+          this.doctorForm.controls["address"].setValue(this.doct.address);
+
         })
         .catch(err => {
           console.log(err);
