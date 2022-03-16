@@ -16,7 +16,15 @@ import { LangService } from 'src/app/Services/lang.service';
 export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   panelOpenState: boolean = false;
   allDept: IDepartment[] = [];
-  displayedColumns: string[] = ['name', 'head', 'date', 'numOfDocs', 'popularity', 'btns'];
+  displayedColumns: string[] = ['numOfDocs','name', 'head',
+
+    'date',  'popularity', 'btns'];
+  dataSource: any;
+
+  // dataSource: any;
+
+  //da ll paginator
+  //da ll delete 3l4an yreload da
   sentDpts: any[] = [];
   //l filter
   FilterKey = '';
@@ -24,7 +32,7 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   lang = '';
   //for filter
   dpts!: IDepartment[];
-  dataSource = new MatTableDataSource(this.dpts);
+  // dataSource = new MatTableDataSource(this.dpts);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;

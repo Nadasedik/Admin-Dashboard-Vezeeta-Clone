@@ -98,35 +98,17 @@
           <mat-divider class="my-2"></mat-divider>
           <div>
             <h2>View way info: </h2>
-            <div>
-              <mat-slide-toggle formControlName="viewInSlider"
+            <div class="row">
+              <mat-slide-toggle formControlName="viewInSlider" class="col-3"
               (change)="updateSliderValidator()" [checked]="dpt?.viewInSlider">
                 View in slider!
               </mat-slide-toggle>
-              <mat-form-field appearance="fill" class="my-2 mx-5"
-              *ngIf="ViewInSlider">
-                <mat-label>Slider Image</mat-label>
-                <input matInput formControlName="sliderPic" name="sliderPic"
-                >
-                <mat-error *ngIf="hasErr('sliderPic', 'required')">
+                <input *ngIf="ViewInSlider" class="form-control col-7"
+                formControlName="sliderPic" name="sliderPic"
+                type="file" (change)="preview($event)">
+                <small class="text-danger" *ngIf="hasErr('sliderPic', 'required')">
                   this field is required now
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div>
-              <mat-slide-toggle formControlName="viewInModal"
-              (change)="updateModalValidator()" [checked]="dpt?.viewInModal">
-                View in Modal!
-              </mat-slide-toggle>
-              <mat-form-field appearance="fill" class="my-2 mx-5"
-              *ngIf="ViewInModal">
-                <mat-label>Modal Icon</mat-label>
-                <input matInput formControlName="modalIcon" name="modalIcon"
->
-                <mat-error *ngIf="hasErr('modalIcon', 'required')">
-                  this field is required now
-                </mat-error>
-              </mat-form-field>
+                </small>
             </div>
           </div>
         </div>
