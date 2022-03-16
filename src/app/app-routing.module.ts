@@ -8,7 +8,6 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
 
 
 import { PatientsComponent } from './Components/Patients/Patients.component';
-import { AddEditPatientsComponent } from './Components/AddEditPatients/AddEditPatients.component';
 
 import { MedicineListComponent } from './Components/medicine-list/medicine-list.component';
 import { MedicineEditComponent } from './Components/medicine-edit/medicine-edit.component';
@@ -25,8 +24,6 @@ const routes: Routes = [
   { path: "departments/add", component: AddUpdateDepartmentComponent },
   { path: "departments/update/:id", component: AddUpdateDepartmentComponent },
   { path: "patients", component: PatientsComponent},
-  {path: "patients/add", component: AddEditPatientsComponent},
-  {path:"patients/edit/:id", component: AddEditPatientsComponent},
 ];
 
 @NgModule({

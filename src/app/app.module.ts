@@ -1,5 +1,4 @@
 
-import { AddEditPatientsComponent } from './Components/AddEditPatients/AddEditPatients.component';
 import { PatientsComponent } from './Components/Patients/Patients.component';
 
 import { MedicineEditComponent } from './Components/medicine-edit/medicine-edit.component';
@@ -71,10 +70,7 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
     DashboardComponent,
     MedicineListComponent,
     MedicineAddComponent,
-
     PatientsComponent,
-    AddEditPatientsComponent,
-
     MedicineEditComponent
 
 

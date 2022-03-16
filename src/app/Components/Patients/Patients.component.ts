@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class PatientsComponent implements OnInit {
   displayedColumns: string[] = [
-    'Image','Name','Gender','Address','Mobile','Email','Birth Date','Blood Group','Treatment','Actions'
+    'Name','Mobile','Gender','Email','Birth Date','Actions'
   ];
   deletePatient!:any 
   patient!:IPatients[] ;
