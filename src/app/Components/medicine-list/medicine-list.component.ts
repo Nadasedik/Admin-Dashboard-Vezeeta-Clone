@@ -26,6 +26,7 @@ export class MedicineListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort !: MatSort;
   currentMedicine!: Medicine;
   columnsToDisplay = ['id', 'nameAR', 'nameEN', 'category', 'quantity', 'price'];
+
   pharmacyData!: MatTableDataSource<Medicine>;
 
   constructor(
@@ -37,7 +38,7 @@ export class MedicineListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.pharmacy.getAll().subscribe(data => {
+    this.pharmacy.getMedicines().subscribe(data => {
       this.pharmacyData = new MatTableDataSource(data);
       this.pharmacyData.sort = this.sort;
       this.pharmacyData.paginator = this.paginator;
@@ -50,9 +51,9 @@ export class MedicineListComponent implements OnInit, AfterViewInit {
   }
 
   editMedicine(data: any): void {
-    const dialogRef = this.dialog.open(MedicineEditComponent, {
+    this.dialog.open(MedicineEditComponent, {
       width: '1000px',
-      height: '600px',
+      height: '565px',
       data: {
         id: data.id,
         nameAR: data.nameAR,
@@ -65,6 +66,5 @@ export class MedicineListComponent implements OnInit, AfterViewInit {
         url: data.url,
       }
     })
-    console.log({ ...data })
   }
 }

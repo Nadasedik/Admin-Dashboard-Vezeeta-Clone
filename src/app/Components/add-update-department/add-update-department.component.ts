@@ -4,6 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IDepartment } from '../../viewmodels/idepartment';
 import { DepartmentsService } from '../../Services/departments.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize, from, Observable, switchMap } from 'rxjs';
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import { Storage } from '@angular/fire/storage';
+
 
 @Component({
   selector: 'app-add-update-department',
@@ -18,10 +23,15 @@ export class AddUpdateDepartmentComponent implements OnInit {
   dpt: any;
   dptID!: string;
   // dpt: IDepartment = {} as IDepartment;
+  //pic upload
+  imgSrc: string = '';
+  selectedImg!: File;
+  currentImg!: string;
   constructor(private _builder: FormBuilder,
     private dptSer: DepartmentsService,
     private _activatedRoute: ActivatedRoute, private _router: Router,
-    private _snackbar: MatSnackBar) { }
+    private _snackbar: MatSnackBar, private _storage:AngularFireStorage,
+    private _storage2: Storage) { }
 
   ngOnInit(): void {
     this.deptForm = this._builder.group({
@@ -38,8 +48,6 @@ export class AddUpdateDepartmentComponent implements OnInit {
       //dynamic validation
       viewInSlider: [false],
       sliderPic: [''],
-      viewInModal: [false],
-      modalIcon: [''],
     });
 
     //l routes
@@ -52,7 +60,7 @@ export class AddUpdateDepartmentComponent implements OnInit {
         this.add = false;
         this.dptSer.getDocByID(id).then(data => {
           this.dpt = data;
-          //set values to input
+          //set values to input to enable update btn without any changes
           this.deptForm.controls['name'].setValue(this.dpt.name);
           this.deptForm.controls['nameAR'].setValue(this.dpt.nameAR);
           this.deptForm.controls['head'].setValue(this.dpt.head);
@@ -61,9 +69,6 @@ export class AddUpdateDepartmentComponent implements OnInit {
           // this.deptForm.controls['common'].setValue(this.dpt.common);
           this.deptForm.controls['viewInSlider'].setValue(this.dpt.viewInSlider);
           this.deptForm.controls['sliderPic'].setValue(this.dpt.sliderPic);
-          this.deptForm.controls['viewInModal'].setValue(this.dpt.viewInModal);
-          this.deptForm.controls['modalIcon'].setValue(this.dpt.modalIcon);
-            console.log('from ts', data);
         })
         .catch(err => {
           console.log(err);
@@ -71,8 +76,6 @@ export class AddUpdateDepartmentComponent implements OnInit {
       }
     })
 
-    //update
-    // console.log('from ts', this.deptSet.updateDept('KSf2lO5njfjTTJEsHIlw'));
   }
 
   //props
@@ -84,12 +87,34 @@ export class AddUpdateDepartmentComponent implements OnInit {
     return this.deptForm.controls['viewInModal'].value
   }
 
+  preview(event: any) {
+    this.selectedImg = event.target.files[0];
+  }
+
   addDept(): void {
-    let data = this.deptForm.value;
-    let common = this.deptForm.value.common == 'true';
-    this.dptSer.addDept({...data, common});
-    //open snackbar
-    this._snackbar.open('Department is added successfully!', 'close');
+    if(!this.selectedImg) {
+      let data = this.deptForm.value;
+        let common = this.deptForm.value.common == 'true';
+        this.dptSer.addDept({...data, common});
+        //open snackbar
+        this._snackbar.open('Department is added successfully!', 'close', {
+          duration: 3000
+        });
+    } else {
+    this._storage.ref(`/icons2/${this.selectedImg.name}`)
+    .put(this.selectedImg)
+    .snapshotChanges().subscribe(d => {
+      d?.ref.getDownloadURL().then(ref => {
+        let data = this.deptForm.value;
+        let common = this.deptForm.value.common == 'true';
+        this.dptSer.addDept({...data, common}, ref);
+        //open snackbar
+        this._snackbar.open('Department is added successfully!', 'close', {
+          duration: 3000
+        });
+      })
+    })
+  }
   }
 
   updateDept(): void {
@@ -97,7 +122,9 @@ export class AddUpdateDepartmentComponent implements OnInit {
     let common = this.deptForm.value.common == 'true';
     this.dptSer.updateDept(this.dptID, {...data, common});
      //open snackbar
-    this._snackbar.open('Department is updated successfully!', 'close');
+    this._snackbar.open('Department is updated successfully!', 'close', {
+      duration: 3000
+    });
   }
 
   //cancel button
@@ -125,12 +152,6 @@ export class AddUpdateDepartmentComponent implements OnInit {
     }
     this.deptForm.get('sliderPic')?.updateValueAndValidity();
   }
-  updateModalValidator() {
-    if(this.ViewInModal) {
-      this.deptForm.get('modalIcon')?.addValidators([Validators.required]);
-    } else {
-      this.deptForm.get('modalIcon')?.clearValidators();
-    }
-    this.deptForm.get('modalIcon')?.updateValueAndValidity();
-  }
+
+
 }

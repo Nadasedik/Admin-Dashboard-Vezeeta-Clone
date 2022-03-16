@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DepartmentsService } from 'src/app/Services/departments.service';
 import { LangService } from 'src/app/Services/lang.service';
+import { DoctorsService } from './../../../Services/doctors.service';
 
 @Component({
   selector: 'app-dialog',
@@ -12,7 +13,8 @@ export class DialogComponent implements OnInit {
   lang = '';
   constructor(private _dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dptSer: DepartmentsService, private langService: LangService) { }
+    private dptSer: DepartmentsService, private langService: LangService,
+  ) { }
     // L Inject to recieve data
 
   ngOnInit(): void {
