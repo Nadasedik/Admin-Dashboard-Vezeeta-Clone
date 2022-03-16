@@ -28,9 +28,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
+
 import { getStorage, provideStorage } from '@angular/fire/storage';
 //import {AngularFireStorageModule} from '@angular/fire/storage'
 
+
+
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 import { environment } from 'src/environments/environment';
 
@@ -103,11 +107,18 @@ import { initializeApp } from 'firebase/app';
     AngularFireModule.initializeApp(environment.firestoreConfig),
     AngularFireStorageModule,
     provideStorage(() => getStorage()),
-    provideFirebaseApp(() => initializeApp(environment.firestoreConfig))
+    provideFirebaseApp(() => initializeApp(environment.firestoreConfig)),
+    AngularFirestoreModule,
+
+    //provideStorage(() => getStorage()),
+    
   ],
+
+
   providers: [
     {provide: BUCKET, useValue: 'gs://vezeeta-website-db.appspot.com'} //to customise the storage bucket.
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -53,7 +53,7 @@ export class MedicineListComponent implements OnInit, AfterViewInit {
   editMedicine(data: any): void {
     this.dialog.open(MedicineEditComponent, {
       width: '1000px',
-      height: '500px',
+      height: '565px',
       data: {
         id: data.id,
         nameAR: data.nameAR,
@@ -68,15 +68,3 @@ export class MedicineListComponent implements OnInit, AfterViewInit {
     })
   }
 }
-
-// export class pharmacyDataSource extends DataSource<Medicine>{
-//   constructor(private pharmacy: PharmacyService) {
-//     super()
-//   }
-//   connect(collectionViewer: CollectionViewer): Observable<readonly Medicine[]> {
-//     return this.pharmacy.getMedicines();
-//   }
-//   disconnect(collectionViewer: CollectionViewer): void {
-
-//   }
-// }

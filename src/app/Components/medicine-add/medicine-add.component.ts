@@ -46,7 +46,7 @@ export class MedicineAddComponent implements OnInit {
       molarity: ['', Validators.required],
       size: ['', Validators.required],
       price: ['', Validators.required],
-      url: ['https://fakeimg.pl/300/', Validators.required],
+      url: ['https://altibbi.com//img/drug.png', Validators.required],
     })
   }
 
