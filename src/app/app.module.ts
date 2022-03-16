@@ -54,6 +54,8 @@ import { MedicineAddComponent } from './Components/medicine-add/medicine-add.com
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
+import { provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp } from 'firebase/app';
 
 @NgModule({
   declarations: [
@@ -99,10 +101,12 @@ import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
     MatCardModule,
     MatDialogModule,
     AngularFireModule.initializeApp(environment.firestoreConfig),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    provideStorage(() => getStorage()),
+    provideFirebaseApp(() => initializeApp(environment.firestoreConfig))
   ],
   providers: [
-    {provide: BUCKET, useValue: 'my-bucket-name'} //to customise the storage bucket.
+    {provide: BUCKET, useValue: 'gs://vezeeta-website-db.appspot.com'} //to customise the storage bucket.
   ],
   bootstrap: [AppComponent]
 })

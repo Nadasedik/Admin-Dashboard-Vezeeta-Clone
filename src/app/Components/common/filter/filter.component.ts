@@ -17,7 +17,6 @@ export class FilterComponent implements OnInit {
   lang: string = '';
 
   //filter
-  @Input() data: any;
 
   constructor(private _router: Router, private langService: LangService) { }
 
@@ -31,7 +30,7 @@ export class FilterComponent implements OnInit {
 // applyFilter(event: Event) {
 //   const filterValue = (event.target as HTMLInputElement).value;
 //   this.data.filter = filterValue.trim().toLowerCase();
-//   this.data.filterPredicate = 
+//   this.data.filterPredicate =
 //   (data: any, filter: string) => data.Name.indexOf(filter) != -1;
 //   console.log(this.data.filter)
 // }

@@ -5,8 +5,6 @@ import { HomeComponent } from './Components/home/home.component';
 import { DepartmentsComponent } from './Components/departments/departments.component';
 import { AddUpdateDepartmentComponent } from './Components/add-update-department/add-update-department.component';
 import { MedicineAddComponent } from './Components/medicine-add/medicine-add.component';
-
-import { MedicineViewComponent } from './Components/medicine-view/medicine-view.component';
 import { PatientsComponent } from './Components/Patients/Patients.component';
 import { AddEditPatientsComponent } from './Components/AddEditPatients/AddEditPatients.component';
 
