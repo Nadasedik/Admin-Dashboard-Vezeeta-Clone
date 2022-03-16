@@ -12,11 +12,11 @@
     </mat-form-field>
     <div class="mat-elevation-z8 mt-3 ">
       <mat-table [dataSource]="dataSource">
-        <!-- Image Column -->
+        <!-- Image Column
         <ng-container matColumnDef="Image">
           <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
           <mat-cell *matCellDef="let element"> <img [src]="element.Image" /> </mat-cell>
-        </ng-container>
+        </ng-container> -->
 
         <!-- Name Column -->
         <ng-container matColumnDef="Name">
@@ -24,55 +24,42 @@
           <mat-cell *matCellDef="let element"> {{element.Name}}</mat-cell>
         </ng-container>
 
-        <!-- Gender Column -->
-        <ng-container matColumnDef="Gender">
-          <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.Gender}} </mat-cell>
-        </ng-container>
-
-        <!-- Address Column -->
-        <ng-container matColumnDef="Address">
-          <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.Address}} </mat-cell>
-        </ng-container>
-
+      
         <!-- Mobile Column -->
         <ng-container matColumnDef="Mobile">
           <mat-header-cell *matHeaderCellDef> Mobile </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.Mobile}} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.Phone}} </mat-cell>
         </ng-container>
+
+          <!-- Gender Column -->
+          <ng-container matColumnDef="Gender">
+            <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Gender}} </mat-cell>
+          </ng-container>
 
         <!-- Email Column -->
         <ng-container matColumnDef="Email">
           <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.Email}} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.Emaile}} </mat-cell>
         </ng-container>
 
         <!-- BirthDate Column -->
         <ng-container matColumnDef="Birth Date">
           <mat-header-cell *matHeaderCellDef> BirthDate </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.DateBirth }} </mat-cell>
+        </ng-container>
+
+        <!-- BirthDate Column 
+        <ng-container matColumnDef="Birth Date">
+          <mat-header-cell *matHeaderCellDef> BirthDate </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.BirthDate | timeStampToDate}} </mat-cell>
-        </ng-container>
+        </ng-container>-->
 
-        <!-- BloodGroup Column -->
-        <ng-container matColumnDef="Blood Group">
-          <mat-header-cell *matHeaderCellDef> BloodGroup </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.BloodGroup}} </mat-cell>
-        </ng-container>
-
-        <!-- Treatment Column -->
-        <ng-container matColumnDef="Treatment">
-          <mat-header-cell *matHeaderCellDef> Treatment </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.Treatment}} </mat-cell>
-        </ng-container>
 
         <!-- Actions Column -->
         <ng-container matColumnDef="Actions">
           <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
           <mat-cell *matCellDef="let element">
-            <button mat-icon-button class="m-2 text-light">
-              <i class="fa fa-edit mx-3 fs-5 text-success" [routerLink]="['edit',element.id]"></i>
-            </button>
             <button mat-icon-button type="button" class="m-2 " data-bs-toggle="modal" data-bs-target="#staticBackdrop2" (click)="getDeletedPatient(element)">
               <i class="fa-solid fa-trash-can mx-3 fs-5 text-danger" ></i>
             </button>

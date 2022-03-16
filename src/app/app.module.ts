@@ -1,5 +1,4 @@
 
-import { AddEditPatientsComponent } from './Components/AddEditPatients/AddEditPatients.component';
 import { PatientsComponent } from './Components/Patients/Patients.component';
 
 import { MedicineEditComponent } from './Components/medicine-edit/medicine-edit.component';
@@ -74,20 +73,24 @@ import { initializeApp } from 'firebase/app';
     MedicineListComponent,
     MedicineAddComponent,
 
+    
+    MedicineEditComponent
+
+
 
     MedicineEditComponent,
     DialogDoctorCompComponent,
 
 
 
-    PatientsComponent,
-    AddEditPatientsComponent,
+    
 
 
     MedicineEditComponent,
       MainLayoutComponent,
       SignupComponent,
       SigninComponent
+
 
 
 
