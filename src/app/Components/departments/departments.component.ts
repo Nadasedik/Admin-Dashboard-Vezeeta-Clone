@@ -7,7 +7,6 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogComponent } from './../common/dialog/dialog.component';
 import { LangService } from 'src/app/Services/lang.service';
-import { IDepartment } from 'src/app/viewmodels/idepartment';
 
 @Component({
   selector: 'app-departments',
@@ -17,12 +16,10 @@ import { IDepartment } from 'src/app/viewmodels/idepartment';
 export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   panelOpenState: boolean = false;
   allDept: IDepartment[] = [];
-  displayedColumns: string[] = ['name', 'head',
+  displayedColumns: string[] = ['numOfDocs','name', 'head',
 
-    'date', 'numOfDocs', 'popularity', 'btns'];
+    'date',  'popularity', 'btns'];
   dataSource: any;
-
-  'date', 'numOfDocs', 'popularity', 'btns'];
 
   // dataSource: any;
 
@@ -35,7 +32,7 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   lang = '';
   //for filter
   dpts!: IDepartment[];
-  dataSource = new MatTableDataSource(this.dpts);
+  // dataSource = new MatTableDataSource(this.dpts);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
