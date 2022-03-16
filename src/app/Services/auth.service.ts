@@ -53,6 +53,7 @@ export class AuthService {
     this._auth.signOut()
     localStorage.removeItem('Admin');
     this.isLoggedIn= false;
+    this._router.navigate(['/signup']);
   }
 
 

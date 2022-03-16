@@ -25,16 +25,6 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  hasErr(control: string, err: string): boolean {
-    if ((this.signinForm.controls[control].dirty) &&
-      (this.signinForm.controls[control].invalid) &&
-      (this.signinForm.controls[control].errors?.[err])) {
-      return true
-    } else {
-      return false
-    }
-  }
-
   onSignin(formData: any) {
     if (formData.valid) {
       // console.log(formData.value);
@@ -43,6 +33,16 @@ export class SigninComponent implements OnInit {
         formData.value.pass
       );
 
+    }
+  }
+
+  hasErr(control: string, err: string): boolean {
+    if ((this.signinForm.controls[control].dirty) &&
+      (this.signinForm.controls[control].invalid) &&
+      (this.signinForm.controls[control].errors?.[err])) {
+      return true
+    } else {
+      return false
     }
   }
 }
