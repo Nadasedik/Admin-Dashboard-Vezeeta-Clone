@@ -47,9 +47,16 @@ import { DialogDoctorCompComponent } from './Components/common/dialog-doctor-com
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
+import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
+import { SignupComponent } from './Components/signup/signup.component';
+import { SigninComponent } from './Components/signin/signin.component';
+
 import {AngularFireStorageModule, BUCKET} from '@angular/fire/compat/storage';
 import { provideFirebaseApp } from '@angular/fire/app';
 import { initializeApp } from 'firebase/app';
+
 
 @NgModule({
   declarations: [
@@ -77,6 +84,10 @@ import { initializeApp } from 'firebase/app';
     AddEditPatientsComponent,
 
 
+    MedicineEditComponent,
+      MainLayoutComponent,
+      SignupComponent,
+      SigninComponent
 
 
 
@@ -102,6 +113,13 @@ import { initializeApp } from 'firebase/app';
     AngularFireStorageModule,
 
     //provideStorage(() => getStorage()),
+
+  ],
+
+  // AngularFirestoreModule,],
+  providers: [
+    { provide: BUCKET, useValue: 'my-bucket-name' } //to customise the storage bucket.
+
     
 
 
@@ -129,6 +147,7 @@ import { initializeApp } from 'firebase/app';
   ],
   providers: [
     {provide: BUCKET, useValue: 'gs://vezeeta-website-db.appspot.com'} //to customise the storage bucket.
+
 
   ],
 
