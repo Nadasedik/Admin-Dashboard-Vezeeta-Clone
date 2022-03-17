@@ -8,12 +8,12 @@
         <li>
           <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-item-center">
             <img src="../../../assets/user.png" alt="userImage" class="user-image me-2 p-2">
-            User Name
+            Admin
             <mat-icon class="user-image-icon mt">
               keyboard_arrow_down
             </mat-icon>
           </button>
-         
+
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="logout()">
               <mat-icon>exit_to_app</mat-icon>

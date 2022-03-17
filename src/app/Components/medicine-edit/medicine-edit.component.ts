@@ -4,6 +4,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { PharmacyService } from 'src/app/Services/pharmacy.service';
 import { MCategory } from 'src/app/viewmodels/MCategory.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatConfirmDialogComponent } from './MatConfirmDialog/MatConfirmDialog.component';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class MedicineEditComponent implements OnInit {
   medicineForm = new FormGroup({});
+  deleteMedicine!: any
 
   categoryList: MCategory[] = [
     { id: 1, name: 'Tablet - حبوب' },
@@ -24,6 +26,7 @@ export class MedicineEditComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private confirmationDialog: MatDialog,
     private pharmacy: PharmacyService,
     public dialog: MatDialogRef<MedicineEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -57,12 +60,20 @@ export class MedicineEditComponent implements OnInit {
   }
 
   removeMedicine() {
-    this.pharmacy.delete(this.data.id)
-      .then(() => {
-        console.log('The Medicine was deleted successfully!');
-      })
-      .catch(err => console.log(err));
-    this.dialog.close()
+    this.confirmationDialog.open(MatConfirmDialogComponent, {
+      width: '350px',
+      height: '125px',
+      disableClose: true
+    }).afterClosed().subscribe(res => {
+      if (res) {
+        this.pharmacy.delete(this.data.id)
+          .then(() => {
+            console.log('The Medicine was deleted successfully!');
+          })
+          .catch(err => console.log(err));
+        this.dialog.close()
+      }
+    })
   }
 }
 

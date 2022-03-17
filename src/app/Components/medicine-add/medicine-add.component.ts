@@ -3,7 +3,6 @@ import { Medicine } from './../../viewmodels/Medicine.model';
 import { MCategory } from './../../viewmodels/MCategory.model';
 import { PharmacyService } from 'src/app/Services/pharmacy.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
