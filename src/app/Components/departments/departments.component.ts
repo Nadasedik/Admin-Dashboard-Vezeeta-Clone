@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnChanges, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnChanges,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DepartmentsService } from 'src/app/Services/departments.service';
@@ -6,33 +12,28 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { DialogComponent } from './../common/dialog/dialog.component';
 import { LangService } from 'src/app/Services/lang.service';
-
-// import { IDepartment } from 'src/app/viewmodels/idepartment';
-
+import { IDepartment } from 'src/app/viewmodels/idepartment';
 
 @Component({
   selector: 'app-departments',
   templateUrl: './departments.component.html',
-  styleUrls: ['./departments.component.scss']
+  styleUrls: ['./departments.component.scss'],
 })
 export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   panelOpenState: boolean = false;
   allDept: IDepartment[] = [];
-  displayedColumns: string[] = ['numOfDocs','name', 'head',
+  displayedColumns: string[] = [
+    'numOfDocs',
+    'name',
+    'head',
+    'date',
+    'popularity',
+    'btns',
+  ];
 
-
-    'date', 'numOfDocs', 'popularity', 'btns'];
-  // dataSource: any;
-
-  // 'date', 'numOfDocs', 'popularity', 'btns'];
-
-    'date',  'popularity', 'btns'];
   dataSource: any;
 
-
   // 'date', 'numOfDocs', 'popularity', 'btns'];
-
-
 
   // dataSource: any;
 
@@ -50,10 +51,13 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   pageEvent!: PageEvent;
-  constructor(private deptSet: DepartmentsService,
-    private _router: Router, private _dialog: MatDialog,
-    private langService: LangService) {
-    this.dataSource = new MatTableDataSource<IDepartment>(this.allDept)
+  constructor(
+    private deptSet: DepartmentsService,
+    private _router: Router,
+    private _dialog: MatDialog,
+    private langService: LangService
+  ) {
+    this.dataSource = new MatTableDataSource<IDepartment>(this.allDept);
   }
 
   ngOnInit(): void {
@@ -69,23 +73,26 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   getAllDepts() {
-    this.deptSet.getAllDepts().then(res => {
-      res?.forEach(singleDoc => {
-        this.allDept.push(singleDoc);
+    this.deptSet
+      .getAllDepts()
+      .then((res) => {
+        res?.forEach((singleDoc) => {
+          this.allDept.push(singleDoc);
+        });
+        this.dataSource = new MatTableDataSource(this.allDept); //7sl edit hena
+        this.sentDpts = this.allDept;
       })
-      this.dataSource = new MatTableDataSource(this.allDept); //7sl edit hena
-      this.sentDpts = this.allDept;
-    }).catch(err => {
-      console.log(err);
-    })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   filterData() {
     // this.deptSet.filterByDept('اسنان').subscribe(data => {
     //   console.log('from ts', data);
     // })
-    this.deptSet.filterByDept('اسنان').subscribe(data => {
+    this.deptSet.filterByDept('اسنان').subscribe((data) => {
       console.log('from ts', data);
-    })
+    });
   }
   openEditForm(element: any, id: string) {
     // console.log('element', element.preventDefault());
@@ -94,23 +101,21 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
     this._router.navigate(['/departments/update/', id]);
   }
 
-
   //dialog
   openDialog(id: string): void {
     const dialogRef = this._dialog.open(DialogComponent, {
       width: '350px',
       data: {
         id: id,
-        dpts: this.sentDpts
-      }
+        dpts: this.sentDpts,
+      },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
-      this.dataSource = result //kda 3mlt remove mn l array
+      this.dataSource = result; //kda 3mlt remove mn l array
 
       console.log('receieved data', result);
-
     });
   }
 
@@ -119,6 +124,4 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-
 }

@@ -13,9 +13,9 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
   templateUrl: './view-all-doctors.component.html',
   styleUrls: ['./view-all-doctors.component.scss']
 })
-export class ViewAllDoctorsComponent implements OnInit , AfterViewInit {
+export class ViewAllDoctorsComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ["Name", "Gender", "Title", "Department", "Price", "btns"]
+  displayedColumns: string[] = ["Name", "Title", "Department", "Price", "btns"]
   allDoctors: IDoctor[] = []
   doctors!: IDoctor[]
   dataSource = new MatTableDataSource(this.doctors)
@@ -46,7 +46,7 @@ export class ViewAllDoctorsComponent implements OnInit , AfterViewInit {
     this.doctorService.getAllDoctors()
       .then(res => {
         console.log(res);
-        
+
         res?.forEach(theDoctor => {
           this.allDoctors.push(theDoctor)
         })
@@ -58,7 +58,7 @@ export class ViewAllDoctorsComponent implements OnInit , AfterViewInit {
   }
 
 
- 
+
 
 
   openEditForm(element: any, id: string) {
