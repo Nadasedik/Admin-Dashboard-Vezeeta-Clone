@@ -31,6 +31,8 @@ export class DoctorsService {
         address: doctor.address,
         dpt: doctor.dpt,
         dptAR: doctor.dptAR,
+        Clinic_Address: doctor.Clinic_Address,
+        Clinic_Phone: doctor.Clinic_Phone,
         status: 'complete',
       })
       .then((response) => {
@@ -69,6 +71,8 @@ export class DoctorsService {
           address: doc.address,
           dpt: doc.dpt,
           dptAR: doc.dptAR,
+          Clinic_Address: doc.Clinic_Address,
+          Clinic_Phone: doc.Clinic_Phone,
           status: 'complete',
         };
         allData.push(theDoctor);

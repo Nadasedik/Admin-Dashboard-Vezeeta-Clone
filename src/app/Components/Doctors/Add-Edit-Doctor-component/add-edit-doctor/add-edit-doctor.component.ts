@@ -108,6 +108,8 @@ export class AddEditDoctorComponent implements OnInit {
       address: ['', [Validators.required]],
       dpt: [''],
       dptAR: [''],
+      Clinic_Address:['',[Validators.required]],
+Clinic_Phone:['',[Validators.required]]
     });
 
     this._activatedRoute.paramMap.subscribe((param) => {
@@ -152,6 +154,8 @@ export class AddEditDoctorComponent implements OnInit {
             this.doctorForm.controls['dpt'].setValue(this.doct.dpt);
             this.doctorForm.controls['dptAR'].setValue(this.doct.dptAR);
             this.doctorForm.controls['address'].setValue(this.doct.address);
+            this.doctorForm.controls['Clinic_Address'].setValue(this.doct.Clinic_Address);
+            this.doctorForm.controls['Clinic_Phone'].setValue(this.doct.Clinic_Phone);
           })
           .catch((err) => {
             console.log(err);

@@ -16,5 +16,7 @@ export interface IDoctor {
   address?: string
   dpt?: string,
   dptAR?: string,
-  status?: string
+  status?: string,
+  Clinic_Address?:string,
+Clinic_Phone?:string
 }
