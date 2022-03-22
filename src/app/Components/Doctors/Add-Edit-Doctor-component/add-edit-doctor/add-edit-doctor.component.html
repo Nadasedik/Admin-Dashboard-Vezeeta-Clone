@@ -286,7 +286,7 @@
             <mat-error *ngIf="hasErr('address', 'required')">
               this field is required
             </mat-error>
-          </mat-form-field>
+          </mat-form-field>        
 
 
           <mat-form-field appearance="fill" class="my-2 col-6">
@@ -302,6 +302,24 @@
             <input matInput formControlName="dptAR" name="dptAR"
             [value]="doct?.areaAR">
 
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="my-2 col-6">
+            <mat-label>Clinic Address</mat-label>
+            <input matInput formControlName="Clinic_Address" name="Clinic_Address"
+            [value]="doct?.Clinic_Address">
+            <mat-error *ngIf="hasErr('Clinic_Address', 'required')">
+              this field is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="my-2 col-6">
+            <mat-label>Clinic Phone</mat-label>
+            <input matInput formControlName="Clinic_Phone" name="Clinic_Phone"
+            [value]="doct?.Clinic_Phone">
+            <mat-error *ngIf="hasErr('Clinic_Phone', 'required')">
+              this field is required
+            </mat-error>
           </mat-form-field>
 
 
