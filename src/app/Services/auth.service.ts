@@ -24,7 +24,7 @@ export class AuthService {
       .signInWithEmailAndPassword(email, pass)
       .then((value) => {
         this._router.navigateByUrl('/medicine/list');
-        // this.snackBar.open('Nice, it worked!');
+        this.snackBar.open('welcom', 'close');
         this.isLoggedIn = true;
       })
       .catch((err) => {
@@ -39,9 +39,8 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, pass)
       .then((res) => {
         this.isLoggedIn = true;
-        localStorage.setItem('user', JSON.stringify(res.user));
-        this._router.navigateByUrl('/medicine/list');
-        // this.snackBar.open('Nice, it worked!', 'dismiss');
+        localStorage.setItem('Admin', JSON.stringify(res.user));
+        this.snackBar.open('Admin added successfully', 'close');
       })
       .catch((err) => {
         this.snackBar.open(err);
@@ -54,7 +53,7 @@ export class AuthService {
     this._auth.signOut();
     localStorage.removeItem('Admin');
     this.isLoggedIn = false;
-    this._router.navigate(['/signup']);
+    this._router.navigate(['/signin']);
   }
 
   ////////////////////////////////

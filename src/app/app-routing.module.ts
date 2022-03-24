@@ -1,7 +1,9 @@
+import { ViewAllAdminComponent } from './Components/admin/view-all-admin/view-all-admin.component';
+import { AddEditComponent } from './Components/admin/add-edit/add-edit.component';
 import { NgModule } from '@angular/core';
 import { AuthGuard } from './Components/guards/auth.guard';
 import { SigninComponent } from './Components/signin/signin.component';
-import { SignupComponent } from './Components/signup/signup.component';
+// import { SignupComponent } from './Components/signup/signup.component';
 import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './Components/home/home.component';
@@ -15,20 +17,18 @@ import { AddEditDoctorComponent } from './Components/Doctors/Add-Edit-Doctor-com
 import { ViewAllDoctorsComponent } from './Components/Doctors/viewAllDoctors/view-all-doctors/view-all-doctors.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/signup', pathMatch: 'full' },
-  { path: 'signup', component: SignupComponent },
+  { path: '', redirectTo: '/signin', pathMatch: 'full' },
   { path: 'signin', component: SigninComponent },
 
   {
     path: '',
     component: MainLayoutComponent,
     children: [
+
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-      {
-        path: 'medicine/list',
-        component: MedicineListComponent,
-        canActivate: [AuthGuard],
-      },
+      { path: 'Admin/add', component: AddEditComponent, canActivate: [AuthGuard]},
+      { path: 'Admin/list', component:ViewAllAdminComponent, canActivate: [AuthGuard] },
+      { path: 'medicine/list', component: MedicineListComponent, canActivate: [AuthGuard], },
       {
         path: 'medicine/add',
         component: MedicineAddComponent,

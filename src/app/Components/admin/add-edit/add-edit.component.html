@@ -1,17 +1,13 @@
 <div class="row">
-  <div class="col-5">
-    <div class="container d-flex flex-column justify-content-center py-4 my-4">
-      <img src="assets/signup.png" alt="" height="150%" width="100%">
-    </div>
-  </div>
-  <div class="col-6">
+
+  <div>
     <div class="container d-flex flex-column justify-content-center py-2">
       <h1 class="fs-2 my-5 fw-bolder">Create Account</h1>
 
       <form class="inputs d-flex flex-column py-3" [formGroup]="signupForm"
         (ngSubmit)="onSignup(email.value, pass.value, name.value)">
         <mat-form-field appearance="fill">
-          <mat-label>Enter your name</mat-label>
+          <mat-label>Enter name</mat-label>
           <input matInput name="name" formControlName="name" #name>
           <button mat-icon-button matSuffix>
             <mat-icon>person</mat-icon>
@@ -21,7 +17,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>Enter your Email</mat-label>
+          <mat-label>Enter Email</mat-label>
           <input matInput name="email" formControlName="email" #email>
           <button mat-icon-button matSuffix>
             <mat-icon>mail</mat-icon>
@@ -35,7 +31,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-          <mat-label>Enter your password</mat-label>
+          <mat-label>Enter password</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" name="pass" #pass formControlName="pass">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hide">
@@ -50,7 +46,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>Confirm your password</mat-label>
+          <mat-label>Confirm password</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" name="pass2" formControlName="pass2">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hide">
@@ -67,12 +63,7 @@
             Confirm password must match password.
           </mat-error>
         </mat-form-field>
-
-        <button mat-stroked-button [disabled]="signupForm.invalid" type="submit" class="w-25" id="btn">SIGN UP</button>
-
-        <div id="btns" class="d-flex my-3">
-          <a routerLink="/signin"> I have an account <span>login</span></a>
-        </div>
+          <button mat-stroked-button [disabled]="signupForm.invalid" type="submit" class="w-25" id="btn">ADD</button>
       </form>
     </div>
   </div>

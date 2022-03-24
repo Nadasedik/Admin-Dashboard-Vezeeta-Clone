@@ -44,7 +44,8 @@ export class PatientsComponent implements OnInit {
   }
 
   getDeletedPatient(ptn: IPatients) {
-    this.deletePatient = ptn
+    this.deletePatient = ptn;
+    console.log(this.deletePatient.id)
   }
 
   DeletePatient(patient: IPatients) {

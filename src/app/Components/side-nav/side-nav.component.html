@@ -4,6 +4,27 @@
   </div>
   <mat-divider></mat-divider>
   <h2 matSubheader class="mt-3">Vezzeta Admin Dashboard</h2>
+  <!-- Admin -->
+  <mat-accordion>
+    <mat-expansion-panel (opened)="Admin = true" (closed)="Admin = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <a mat-list-item>
+            <mat-icon>person</mat-icon> Admins
+          </a>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="d-flex flex-column">
+        <a mat-list-item [routerLink]="['Admin/list']" routerLinkActive="list-item-active"
+          class="text-decoration-none text-light my-2">
+          <mat-icon>view_list</mat-icon> Admin List
+        </a>
+        <a mat-list-item [routerLink]="['Admin/add']" routerLinkActive="list-item-active">
+          <mat-icon>add</mat-icon> Add Admin
+        </a>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
   <mat-accordion>
     <mat-expansion-panel (opened)="(pharmacy)" (closed)="(!pharmacy)">
       <mat-expansion-panel-header>
@@ -82,4 +103,5 @@
       </div>
     </mat-expansion-panel>
   </mat-accordion>
+  
 </mat-nav-list>
