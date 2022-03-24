@@ -26,7 +26,6 @@ export class MedicineListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort !: MatSort;
   currentMedicine!: Medicine;
   columnsToDisplay = ['id', 'nameAR', 'nameEN', 'category', 'quantity', 'price'];
-
   pharmacyData!: MatTableDataSource<Medicine>;
 
   constructor(
