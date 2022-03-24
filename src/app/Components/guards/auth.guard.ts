@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from './../../Services/auth.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
@@ -12,7 +13,8 @@ import * as firebase from 'firebase/compat';
 export class AuthGuard implements CanActivate {
   constructor(
     private _authService: AuthService,
-    private _router: Router) {
+    private _router: Router,
+    private snackBar: MatSnackBar) {
 
   }
 
@@ -23,7 +25,7 @@ export class AuthGuard implements CanActivate {
     if (this._authService.isLogged()) {
       return true;
     } else {
-      alert('you must login first');
+      this.snackBar.open('you must login first', 'close');
       this._router.navigate(['signin'], {
         queryParams: {
           returnUrl: state.url

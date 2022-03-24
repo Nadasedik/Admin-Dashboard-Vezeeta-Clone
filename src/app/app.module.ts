@@ -38,11 +38,12 @@ import { DialogDoctorCompComponent } from './Components/common/dialog-doctor-com
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MainLayoutComponent } from './Components/main-layout/main-layout.component';
-import { SignupComponent } from './Components/signup/signup.component';
 import { SigninComponent } from './Components/signin/signin.component';
 import { AddEditDoctorComponent } from 'src/app/Components/Doctors/Add-Edit-Doctor-component/add-edit-doctor/add-edit-doctor.component';
 import { ViewAllDoctorsComponent } from 'src/app/Components/Doctors/viewAllDoctors/view-all-doctors/view-all-doctors.component';
 import { MatConfirmDialogComponent } from './Components/medicine-edit/MatConfirmDialog/MatConfirmDialog.component';
+import { AddEditComponent } from './Components/admin/add-edit/add-edit.component';
+import { ViewAllAdminComponent } from './Components/admin/view-all-admin/view-all-admin.component';
 
 @NgModule({
   declarations: [
@@ -60,12 +61,13 @@ import { MatConfirmDialogComponent } from './Components/medicine-edit/MatConfirm
     MedicineEditComponent,
     DialogDoctorCompComponent,
     MainLayoutComponent,
-    SignupComponent,
     SigninComponent,
     PatientsComponent,
     AddEditDoctorComponent,
     ViewAllDoctorsComponent,
-    MatConfirmDialogComponent
+    MatConfirmDialogComponent,
+    AddEditComponent,
+    ViewAllAdminComponent
   ],
 
   imports: [

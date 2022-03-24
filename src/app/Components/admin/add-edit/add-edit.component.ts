@@ -1,15 +1,17 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from './../../Services/auth.service';
+import { AuthService } from 'src/app/Services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { confirmPassValidator } from '../validators/confirmPass';
+import { confirmPassValidator } from '../../validators/confirmPass';
 import { MatSnackBar } from '@angular/material/snack-bar';
-@Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
-})
-export class SignupComponent implements OnInit {
 
+@Component({
+  selector: 'app-add-edit',
+  templateUrl: './add-edit.component.html',
+  styleUrls: ['./add-edit.component.scss']
+})
+export class AddEditComponent implements OnInit {
+
+ 
   hide = true;
   signupForm: FormGroup;
   isSigned = false;
@@ -36,8 +38,8 @@ export class SignupComponent implements OnInit {
   async onSignup(email: string, pass: string, name: string) {
     await this.authSer.signUp(email, pass);
     //add to user collection
-    this.authSer.addUser({name, email});
-    if(this.authSer.isLoggedIn) {
+    this.authSer.addUser({ name, email });
+    if (this.authSer.isLoggedIn) {
       this.isSigned = true;
     }
   }
@@ -54,3 +56,4 @@ export class SignupComponent implements OnInit {
   }
 
 }
+

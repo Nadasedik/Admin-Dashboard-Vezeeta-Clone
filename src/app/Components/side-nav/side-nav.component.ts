@@ -16,6 +16,8 @@ export class SideNavComponent implements OnInit {
 
   patients:boolean =false;
 
+  Admin:boolean = false;
+
 
   
 
