@@ -41,6 +41,7 @@ export class AuthService {
         this.isLoggedIn = true;
         localStorage.setItem('Admin', JSON.stringify(res.user));
         this.snackBar.open('Admin added successfully', 'close');
+        this._router.navigateByUrl('Admin/list')
       })
       .catch((err) => {
         this.snackBar.open(err);

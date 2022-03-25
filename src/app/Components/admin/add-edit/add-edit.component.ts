@@ -11,10 +11,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AddEditComponent implements OnInit {
 
- 
   hide = true;
   signupForm: FormGroup;
   isSigned = false;
+
   constructor(
     private _formBuilder: FormBuilder,
     private authSer: AuthService,
