@@ -7,11 +7,12 @@
   <div class="page-content shadow p-3 position-relative">
     <div class="mat-elevation-z8 mt-3 ">
       <mat-table [dataSource]="dataSource">
-        <!-- Name Column -->
+        <!-- name Column -->
         <ng-container matColumnDef="Name">
           <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
         </ng-container>
+
 
 
         <!-- Email Column -->
@@ -28,6 +29,11 @@
             <button mat-icon-button type="button" class="m-2 " data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
               (click)="getDeletedAdmin(element)">
               <i class="fa-solid fa-trash-can mx-3 fs-5 text-danger"></i>
+            </button>
+
+            <button mat-icon-button type="button" class="m-2 " data-bs-toggle="modal" data-bs-target="#staticBackdrop2"
+              (click)="getUpdatedAdmin($event ,element.id)">
+              <i class="fa fa-edit mx-3 fs-5 text-success"></i>
             </button>
           </mat-cell>
         </ng-container>

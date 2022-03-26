@@ -1,3 +1,4 @@
+import { EditAdminComponent } from './Components/admin/edit-admin/edit-admin.component';
 import { ViewAllAdminComponent } from './Components/admin/view-all-admin/view-all-admin.component';
 import { AddEditComponent } from './Components/admin/add-edit/add-edit.component';
 import { NgModule } from '@angular/core';
@@ -28,6 +29,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'Admin/add', component: AddEditComponent, canActivate: [AuthGuard]},
       { path: 'Admin/list', component:ViewAllAdminComponent, canActivate: [AuthGuard] },
+      { path: 'Admin/edit/:id', component:EditAdminComponent, canActivate: [AuthGuard] },
       { path: 'medicine/list', component: MedicineListComponent, canActivate: [AuthGuard], },
       {
         path: 'medicine/add',

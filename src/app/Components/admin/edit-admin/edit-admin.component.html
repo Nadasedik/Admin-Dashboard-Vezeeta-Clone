@@ -1,0 +1,61 @@
+<div class="container-fluid page">
+
+  <div class="page-box p-5">
+    {{add? 'Add Patient' : 'Edit Patient'}}
+  </div>
+  <div class="page-content shadow">
+    <form class="p-5" [formGroup]="AdminForm" (ngSubmit)=" EditAdmin()">
+      
+      <div class="row ">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <i matSuffix class="fa-solid fa-file-signature"></i>
+          <input matInput formControlName="name" name="Name" [value]="updateAdmin?.name">
+
+          <mat-error *ngIf="hasErr('name', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('name', 'pattern')">
+            this name must be at least 3 characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <i matSuffix class="fa-solid fa-at"></i>
+          <input matInput formControlName="email" name="Email" [value]="updateAdmin?.email">
+          <mat-error *ngIf="hasErr('email', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="hasErr('email', 'email')">
+            this Email not valid.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+      <div class="row d-flex justify-content-between">
+        <div class="col-4 d-flex justify-content-center">
+          <button mat-raised-button color="primary" type="submit" [disabled]="AdminForm.invalid" id="btnEdit">
+            {{add? "ADD" : 'EDIT'}}
+          </button>
+        </div>
+        <div class="col-4 d-flex justify-content-center">
+
+          <button mat-raised-button type="reset" (click)="cancel()" color="accent" *ngIf="add" id="btn1">Cancel</button>
+
+          <button mat-raised-button (click)="cancel()" color="accent" *ngIf="!add" id="btn2">Cancel</button>
+        </div>
+
+      </div>
+    </form>
+
+
+
+  </div>
+
+
+
+</div>

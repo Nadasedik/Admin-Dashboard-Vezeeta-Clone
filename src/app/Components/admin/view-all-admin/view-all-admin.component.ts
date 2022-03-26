@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { AdminService } from 'src/app/Services/admin.service';
@@ -17,16 +18,17 @@ export class ViewAllAdminComponent implements OnInit {
     'Name', 'Email', 'Actions'
   ];
   deletedmin!: any
+  editadmin!:any
   admin!: Iadmin[];
   ELEMENT_DATA: any;
   dataSource!: MatTableDataSource<Iadmin>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-
   constructor(
     private _AdminService: AdminService,
-    private _dialog: MatDialog) { }
+    private _dialog: MatDialog,
+    private _router:Router) { }
 
   ngOnInit(): void {
     this._AdminService.getAllAdmins().subscribe(res => {
@@ -54,4 +56,11 @@ export class ViewAllAdminComponent implements OnInit {
     console.log(admin)
   }
 
+
+  getUpdatedAdmin(element: any, id: string) {
+    console.log('id', id);
+    this._router.navigate(['Admin/edit', id]);
+  }
+
+ 
 }

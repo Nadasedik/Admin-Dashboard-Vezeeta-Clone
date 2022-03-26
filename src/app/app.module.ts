@@ -44,7 +44,8 @@ import { ViewAllDoctorsComponent } from 'src/app/Components/Doctors/viewAllDocto
 import { MatConfirmDialogComponent } from './Components/medicine-edit/MatConfirmDialog/MatConfirmDialog.component';
 import { AddEditComponent } from './Components/admin/add-edit/add-edit.component';
 import { ViewAllAdminComponent } from './Components/admin/view-all-admin/view-all-admin.component';
-
+import { EditAdminComponent } from './Components/admin/edit-admin/edit-admin.component';
+1
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +68,8 @@ import { ViewAllAdminComponent } from './Components/admin/view-all-admin/view-al
     ViewAllDoctorsComponent,
     MatConfirmDialogComponent,
     AddEditComponent,
-    ViewAllAdminComponent
+    ViewAllAdminComponent,
+    EditAdminComponent,
   ],
 
   imports: [

@@ -94,6 +94,7 @@ export class DepartmentsComponent implements OnInit, OnChanges, AfterViewInit {
       console.log('from ts', data);
     });
   }
+  
   openEditForm(element: any, id: string) {
     // console.log('element', element.preventDefault());
 
